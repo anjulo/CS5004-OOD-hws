@@ -1,5 +1,7 @@
 package hw2;
 
+import java.util.Objects;
+
 public class Recipient {
 
   private String firstName;
@@ -23,5 +25,18 @@ public class Recipient {
   public String toString(){
     String str = String.format("%s %s Email:%s", firstName, lastName, email);
     return str;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof Recipient recipient)) return false;
+    return firstName.equals(recipient.firstName) && lastName.equals(recipient.lastName)
+                                                 && email.equals(recipient.email);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(firstName, lastName, email);
   }
 }
