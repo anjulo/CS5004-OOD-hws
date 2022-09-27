@@ -1,5 +1,8 @@
 package hw2;
 
+/**
+ * Locker class.
+ */
 public class Locker {
 
   private double maxWidth;
@@ -7,10 +10,19 @@ public class Locker {
   private double maxDepth;
   private MailItem mailItem;
 
-  public Locker(double maxWidth, double maxHeight, double maxDepth) throws IllegalArgumentException{
+  /**
+   * Constructor for Locker class.
+   *
+   * @param maxWidth  the width of the locker.
+   * @param maxHeight the height of the locker.
+   * @param maxDepth  the depth of the locker.
+   * @throws IllegalArgumentException  illegal argument exception
+   */
+  public Locker(double maxWidth, double maxHeight, double maxDepth)
+                                                        throws IllegalArgumentException {
 
-    if ( maxWidth < 1|| maxHeight < 1 || maxDepth < 1){
-      throw new IllegalArgumentException(" Arguments can't be negative.");
+    if (maxWidth < 1 || maxHeight < 1 || maxDepth < 1) {
+      throw new IllegalArgumentException("Arguments can't be negative.");
     }
 
     this.maxWidth = maxWidth;
@@ -19,30 +31,45 @@ public class Locker {
     this.mailItem = null;
   }
 
-  public void addMail(MailItem mailItem){
-    if ( this.mailItem == null && this.maxWidth > mailItem.getWidth() &&
-            this.maxHeight > mailItem.getHeight() && this.maxDepth > mailItem.getDepth() ){
+  /**
+   * Method to add a new mail.
+   *
+   * @param mailItem the mail item
+   */
+  public void addMail(MailItem mailItem) {
+    if (this.mailItem == null && this.maxWidth > mailItem.getWidth()
+            && this.maxHeight > mailItem.getHeight() && this.maxDepth > mailItem.getDepth()) {
       this.mailItem = mailItem;
     }
   }
 
-  public MailItem pickupMail(Recipient recipient){
-    if(this.mailItem != null && recipient.equals(this.mailItem.getRecipient())){
+  /**
+   * Picks up and returns the mail item.
+   *
+   * @param recipient the recipient
+   * @return the mail item
+   */
+  public MailItem pickupMail(Recipient recipient) {
+    if (this.mailItem != null && recipient.equals(this.mailItem.getRecipient())) {
       MailItem mailItem1 = this.mailItem;
       this.mailItem = null;
       return mailItem1;
-    }
-    else{
+    } else {
       return null;
     }
   }
 
+  /**
+   * Getter for the mail item.
+   *
+   * @param recipient the recipient
+   * @return the mail item
+   */
   // helper method
-  public MailItem getMail(Recipient recipient){
-    if(this.mailItem != null && recipient.equals(this.mailItem.getRecipient())){
+  public MailItem getMail(Recipient recipient) {
+    if (this.mailItem != null && recipient.equals(this.mailItem.getRecipient())) {
       return this.mailItem;
-    }
-    else{
+    } else {
       return null;
     }
   }

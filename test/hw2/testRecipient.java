@@ -1,10 +1,13 @@
 package hw2;
 
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
+/**
+ * The test class for Recipient class.
+ */
 public class testRecipient {
 
   private Recipient tom;
@@ -13,14 +16,30 @@ public class testRecipient {
   private Recipient jinx;
 
 
+  /**
+   * Sets up instances to test.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
     tom = new Recipient("Thomas", "Cat", "tom@tomandjerry.com");
     jerry = new Recipient("Gerald", "Mouse", "jerry@tomandjerry.com");
-    jasper = new Recipient("Thomas","Cat", "tom@tomandjerry.com");
+    jasper = new Recipient("Thomas", "Cat", "tom@tomandjerry.com");
     jinx = new Recipient("Gerald", "Mouse", "jerry@tomandjerry.com");
   }
 
+  /**
+   * Test bas inputs that throw exceptions.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testBadInput(){
+
+  }
+
+  /**
+   * Tests the toString() method.
+   */
   @Test
   public void testToString() {
     String str1 = "Thomas Cat Email:tom@tomandjerry.com";
@@ -29,6 +48,9 @@ public class testRecipient {
     assertEquals(str2, jerry.toString());
   }
 
+  /**
+   * Tests the equals() method.
+   */
   @Test
   public void testEquals() {
     tom.equals(jasper);

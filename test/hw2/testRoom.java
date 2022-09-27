@@ -1,11 +1,14 @@
 package hw2;
 
+import static hw2.RoomType.*;
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import static hw2.Room.RoomType.*;
-import static org.junit.Assert.*;
-
+/**
+ * The type Test room.
+ */
 public class testRoom {
 
   private Room room1;
@@ -14,6 +17,11 @@ public class testRoom {
   private Room room4;
   private Room room5;
 
+  /**
+   * Sets up.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
     room1 = new Room(SINGLE, 100);
@@ -25,6 +33,9 @@ public class testRoom {
     room5.bookRoom(1);
   }
 
+  /**
+   * Test is available.
+   */
   @Test
   public void testIsAvailable() {
     assertTrue(room1.isAvailable());
@@ -34,12 +45,18 @@ public class testRoom {
     assertFalse(room5.isAvailable());
   }
 
+  /**
+   * Test book room.
+   */
   @Test
   public void testBookRoom() {
     assertEquals(2, room4.getNumberOfGuests());
     assertEquals(1, room5.getNumberOfGuests());
   }
 
+  /**
+   * Test get number of guests.
+   */
   @Test
   public void testGetNumberOfGuests() {
     assertEquals(0, room1.getNumberOfGuests());
