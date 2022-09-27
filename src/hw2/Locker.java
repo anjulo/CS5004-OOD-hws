@@ -37,8 +37,8 @@ public class Locker {
    * @param mailItem the mail item
    */
   public void addMail(MailItem mailItem) {
-    if (this.mailItem == null && this.maxWidth > mailItem.getWidth()
-            && this.maxHeight > mailItem.getHeight() && this.maxDepth > mailItem.getDepth()) {
+    if (this.mailItem == null && this.maxWidth >= mailItem.getWidth()
+            && this.maxHeight >= mailItem.getHeight() && this.maxDepth >= mailItem.getDepth()) {
       this.mailItem = mailItem;
     }
   }
