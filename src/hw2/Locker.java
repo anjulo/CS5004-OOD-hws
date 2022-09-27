@@ -26,7 +26,7 @@ public class Locker {
     }
   }
 
-  public MailItem pickUpMail(Recipient recipient){
+  public MailItem pickupMail(Recipient recipient){
     if(this.mailItem != null && recipient.equals(this.mailItem.getRecipient())){
       MailItem mailItem1 = this.mailItem;
       this.mailItem = null;
@@ -36,4 +36,15 @@ public class Locker {
       return null;
     }
   }
+
+  // helper method
+  public MailItem getMail(Recipient recipient){
+    if(this.mailItem != null && recipient.equals(this.mailItem.getRecipient())){
+      return this.mailItem;
+    }
+    else{
+      return null;
+    }
+  }
+
 }
