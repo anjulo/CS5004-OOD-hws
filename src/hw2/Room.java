@@ -73,7 +73,7 @@ public class Room {
    * @param numOfGuests the number of guests
    */
   public void bookRoom(int numOfGuests){
-    if (this.isAvailable() && 0 < numOfGuests && numOfGuests < this.maxOccupancy){
+    if (this.isAvailable() && 0 < numOfGuests && numOfGuests <= this.maxOccupancy){
       this.numOfGuests = numOfGuests;
     }
     // what about cases where the room isn't available?
