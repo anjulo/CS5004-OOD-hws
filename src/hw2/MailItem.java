@@ -10,7 +10,7 @@ public class MailItem {
   public MailItem(double width, double height, double depth, Recipient recipient)
                                                 throws IllegalArgumentException{
     if (width < 1 || height < 1 || depth < 1){
-      throw new IllegalArgumentException("Arguments can't be less than 1");
+      throw new IllegalArgumentException("Mail dimensions can't be less than 1");
     }
     else if (recipient == null){
       throw new IllegalArgumentException("Recipient can't be null");
