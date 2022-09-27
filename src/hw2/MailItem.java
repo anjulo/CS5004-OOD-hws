@@ -25,4 +25,13 @@ public class MailItem {
   public Recipient getRecipient(){
     return this.recipient;
   }
+  public double getWidth(){
+    return this.width;
+  }
+  public double getHeight(){
+    return this.height;
+  }
+  public double getDepth(){
+    return this.depth;
+  }
 }
