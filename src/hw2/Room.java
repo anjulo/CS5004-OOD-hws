@@ -58,7 +58,7 @@ public class Room {
   /**
    * Checks if the room is available.
    *
-   * @return the boolean
+   * @return boolean value for availability
    */
   public Boolean isAvailable(){
     if(this.numOfGuests == 0){
@@ -84,7 +84,7 @@ public class Room {
   /**
    * Getter for the number of guests in the room.
    *
-   * @return the int
+   * @return the number of guests
    */
   public int getNumberOfGuests(){
     return this.numOfGuests;
