@@ -1,9 +1,10 @@
 package hw2;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  *Test class for the locker class.
@@ -38,7 +39,7 @@ public class testLocker {
 
     tom = new Recipient("Thomas", "Cat", "tom@tomandjerry.com");
     jerry = new Recipient("Gerald", "Mouse", "jerry@tomandjerry.com");
-    shoes = new MailItem(3.5, 2, 3,tom);
+    shoes = new MailItem(3.5, 2, 3, tom);
     cheese = new MailItem(1.0, 1.5, 1.2, jerry);
     locker1 = new Locker(4, 4, 6);
     locker2 = new Locker(2, 2, 3);

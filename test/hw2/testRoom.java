@@ -1,7 +1,11 @@
 package hw2;
 
-import static hw2.RoomType.*;
-import static org.junit.Assert.*;
+import static hw2.RoomType.DOUBLE;
+import static hw2.RoomType.FAMILY;
+import static hw2.RoomType.SINGLE;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
