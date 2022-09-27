@@ -24,7 +24,8 @@ public class Room {
     /**
      * Family room with maximum occupancy of 4.
      */
-    FAMILY};
+    FAMILY
+  }
 
   /**
    * Instantiates a new Room class.
@@ -35,12 +36,12 @@ public class Room {
    */
   public Room(RoomType roomType, double price) throws IllegalArgumentException {
 
-    if(price < 0){
+    if (price < 0) {
       throw new IllegalArgumentException("Price value can't be negative.");
     }
     this.price = price;
 
-    switch (roomType){
+    switch (roomType) {
       case SINGLE:
         this.maxOccupancy = 1;
         break;
@@ -49,6 +50,8 @@ public class Room {
         break;
       case FAMILY:
         this.maxOccupancy = 4;
+        break;
+      default:
         break;
     }
 
@@ -60,11 +63,11 @@ public class Room {
    *
    * @return boolean value for availability
    */
-  public Boolean isAvailable(){
-    if(this.numOfGuests == 0){
+  public Boolean isAvailable() {
+    if (this.numOfGuests == 0) {
       return true;
     }
-      return false;
+    return false;
   }
 
   /**
@@ -72,8 +75,8 @@ public class Room {
    *
    * @param numOfGuests the number of guests
    */
-  public void bookRoom(int numOfGuests){
-    if (this.isAvailable() && 0 < numOfGuests && numOfGuests <= this.maxOccupancy){
+  public void bookRoom(int numOfGuests) {
+    if (this.isAvailable() && 0 < numOfGuests && numOfGuests <= this.maxOccupancy) {
       this.numOfGuests = numOfGuests;
     }
     // what about cases where the room isn't available?
@@ -86,7 +89,7 @@ public class Room {
    *
    * @return the number of guests
    */
-  public int getNumberOfGuests(){
+  public int getNumberOfGuests() {
     return this.numOfGuests;
   }
 
