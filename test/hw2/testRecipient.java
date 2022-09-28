@@ -37,7 +37,7 @@ public class testRecipient {
    * Test bad inputs that throw exceptions.
    */
   @Test(expected = IllegalArgumentException.class)
-  public void testBadRecipient(){
+  public void testBadRecipient() {
     tom = new Recipient("", "Cat", "tom@tomandjerry.com");
     jerry = new Recipient("Gerald", "", "jerry@tomandjerry.com");
     jasper = new Recipient("Thomas", "Cat", "");
