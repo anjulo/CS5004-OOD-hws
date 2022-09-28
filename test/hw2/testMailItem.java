@@ -36,14 +36,14 @@ public class testMailItem {
    * Bad inputs to test the exception throwing.
    */
   @Test(expected = IllegalArgumentException.class)
-  public void testBadMailItem(){
+  public void testBadMailItem() {
 
     shoes = new MailItem(0.5, 2, 3, tom);
-    cheese = new MailItem(1.0,0.756,1.2, jerry);
+    cheese = new MailItem(1.0, 0.756, 1.2, jerry);
 
-    shoes2 = new MailItem(4.5,2,0.999999999, tom);
+    shoes2 = new MailItem(4.5, 2, 0.999999999, tom);
 
-    cheese2 = new MailItem(1.0,1.5,1.2, null);
+    cheese2 = new MailItem(1.0, 1.5, 1.2, null);
 
 
 

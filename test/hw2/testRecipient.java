@@ -39,13 +39,13 @@ public class testRecipient {
   @Test(expected = IllegalArgumentException.class)
   public void testBadRecipient(){
     tom = new Recipient("", "Cat", "tom@tomandjerry.com");
-    jerry = new Recipient("Gerald", "","jerry@tomandjerry.com");
+    jerry = new Recipient("Gerald", "", "jerry@tomandjerry.com");
     jasper = new Recipient("Thomas", "Cat", "");
 
 
 
     tom2 = new Recipient(null, "Cat", "tom@tomandjerry.com");
-    jerry2 = new Recipient("Gerald", null,"jerry@tomandjerry.com");
+    jerry2 = new Recipient("Gerald", null, "jerry@tomandjerry.com");
     jasper2 = new Recipient("Thomas", "Cat", null);
 
   }

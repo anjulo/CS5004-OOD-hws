@@ -6,8 +6,6 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.concurrent.locks.Lock;
-
 /**
  *Test class for the locker class.
  */
@@ -56,11 +54,11 @@ public class testLocker {
    * Bad inputs to test the exception throwing.
    */
   @Test(expected = IllegalArgumentException.class)
-  public void testBadLocker(){
+  public void testBadLocker() {
 
     locker1 = new Locker(0.9999, 1.5, 3.4);
     locker2 = new Locker(2.3, 0.987, 2.4);
-    locker3 = new  Locker(5.4,1.2, -1.2);
+    locker3 = new  Locker(5.4, 1.2, -1.2);
 
 
   }
