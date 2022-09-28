@@ -38,6 +38,16 @@ public class testRoom {
   }
 
   /**
+   * Test bad inputs that throw exceptions.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testBadRoom(){
+    room1 = new Room(SINGLE, -100);
+    room2 = new Room(DOUBLE, -50);
+    room3 = new Room(FAMILY, -10989839);
+  }
+
+  /**
    * Test is available.
    */
   @Test

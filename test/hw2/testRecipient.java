@@ -14,6 +14,10 @@ public class testRecipient {
   private Recipient jerry;
   private Recipient jasper;
   private Recipient jinx;
+  private Recipient tom2;
+  private Recipient jerry2;
+  private Recipient jasper2;
+
 
 
   /**
@@ -30,10 +34,19 @@ public class testRecipient {
   }
 
   /**
-   * Test bas inputs that throw exceptions.
+   * Test bad inputs that throw exceptions.
    */
   @Test(expected = IllegalArgumentException.class)
-  public void testBadInput(){
+  public void testBadRecipient(){
+    tom = new Recipient("", "Cat", "tom@tomandjerry.com");
+    jerry = new Recipient("Gerald", "","jerry@tomandjerry.com");
+    jasper = new Recipient("Thomas", "Cat", "");
+
+
+
+    tom2 = new Recipient(null, "Cat", "tom@tomandjerry.com");
+    jerry2 = new Recipient("Gerald", null,"jerry@tomandjerry.com");
+    jasper2 = new Recipient("Thomas", "Cat", null);
 
   }
 
