@@ -59,6 +59,8 @@ public class testRecipient {
     String str2 = "Gerald Mouse Email:jerry@tomandjerry.com";
     assertEquals(str1, tom.toString());
     assertEquals(str2, jerry.toString());
+    assertEquals(str1, jasper.toString());
+    assertEquals(str2, jinx.toString());
   }
 
   /**

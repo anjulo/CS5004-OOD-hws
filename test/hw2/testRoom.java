@@ -66,6 +66,11 @@ public class testRoom {
   public void testBookRoom() {
     assertEquals(2, room4.getNumberOfGuests());
     assertEquals(1, room5.getNumberOfGuests());
+    room3.bookRoom(10);
+    assertTrue(room3.isAvailable());
+    room2.bookRoom(1000);
+    assertTrue(room2.isAvailable());
+
   }
 
   /**
