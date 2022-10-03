@@ -17,4 +17,16 @@ public abstract class AbstractChessPiece implements ChessPiece {
     this.column = column;
     this.color = color;
   }
+
+  public int getRow() {
+    return this.row;
+  }
+
+  public int getColumn() {
+    return this.column;
+  }
+  public Color getColor() {
+    return this.color;
+  }
+
 }
