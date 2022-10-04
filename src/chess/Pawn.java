@@ -16,7 +16,7 @@ public class Pawn extends AbstractChessPiece {
 
     super(row, col, color);
 
-    if ((color == Color.BLACK && row == 0) || (color == Color.WHITE && row == 7)) {
+    if ((color == Color.WHITE && row == 0) || (color == Color.BLACK && row == 7)) {
       throw new IllegalArgumentException("No pawns may be created in the 'royal' row for"
                                                                         + "their color");
     }
