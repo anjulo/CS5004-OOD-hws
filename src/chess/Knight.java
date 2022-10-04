@@ -18,14 +18,17 @@ public class Knight extends AbstractChessPiece {
     super(row, col, color);
   }
 
+  @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
-
     super.checkBound(row, col);
+
     final int HOR_MOVE = 2;
     final int VER_MOVE = 1;
-    double horMove = col - this.col;
-    double verMove = row - this.row;
-
-    return (horMove == HOR_MOVE && verMove == VER_MOVE);
+    if (super.canMove(row, col)) {
+      double horMove = col - this.col;
+      double verMove = row - this.row;
+      return (horMove == HOR_MOVE && verMove == VER_MOVE);
+    }
+    return false;
   }
 }

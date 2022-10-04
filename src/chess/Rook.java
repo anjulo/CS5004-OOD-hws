@@ -17,8 +17,13 @@ public class Rook extends AbstractChessPiece {
     super(row, col, color);
   }
 
+  @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     super.checkBound(row, col);
-    return isOnDiagonalLine(row, col);
+
+    if (super.canMove(row, col)) {
+      return isOnDiagonalLine(row, col);
+    }
+    return false;
   }
 }
