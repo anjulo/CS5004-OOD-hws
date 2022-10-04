@@ -22,7 +22,7 @@ public class Rook extends AbstractChessPiece {
     super.checkBound(row, col);
 
     if (super.canMove(row, col)) {
-      return isOnDiagonalLine(row, col);
+      return isOnHorOrVerLine(row, col);
     }
     return false;
   }
