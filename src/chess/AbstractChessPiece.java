@@ -2,19 +2,20 @@ package chess;
 
 public abstract class AbstractChessPiece implements ChessPiece {
   protected int row;
-  protected int column;
+  protected int col;
   protected Color color;
-  private final int MINIMUM_DIMENTION = 0;
-  private final int MAXIMUM_DIMENTION = 7;
 
+  public AbstractChessPiece(int row, int col, Color color) throws IllegalArgumentException {
 
-  public AbstractChessPiece(int row, int column, Color color) throws IllegalArgumentException {
-    if (MINIMUM_DIMENTION > row || row > MAXIMUM_DIMENTION || MINIMUM_DIMENTION > column
-                                                           || column > MAXIMUM_DIMENTION) {
-      throw new IllegalArgumentException("Chess piece position out of bound!");
+    this.checkBound(row, col);
+    if (color != Color.BLACK && color != Color.WHITE){
+      throw new IllegalArgumentException("Chess Piece color can't only be black or white!");
     }
+
+    // Do i need to do more excetion checks?
+
     this.row = row;
-    this.column = column;
+    this.col = col;
     this.color = color;
   }
 
@@ -23,10 +24,29 @@ public abstract class AbstractChessPiece implements ChessPiece {
   }
 
   public int getColumn() {
-    return this.column;
+    return this.col;
   }
   public Color getColor() {
     return this.color;
   }
 
+  public void checkBound(int row, int col) throws IllegalArgumentException {
+
+    final int MINIMUM_DIMENTION = 0;
+    final int MAXIMUM_DIMENTION = 7;
+
+    if(row < MINIMUM_DIMENTION  || row > MAXIMUM_DIMENTION) {
+      throw new IllegalArgumentException("Row number is out of bound!");
+    }
+    else if (col < MINIMUM_DIMENTION || col > MAXIMUM_DIMENTION){
+      throw new IllegalArgumentException("Column number is out of bound!");
+    }
+  }
+
+  public boolean onHorzOrVerLine(int row, int col){
+    return (row == this.row || col == this.col);
+  }
+  public boolean onDiagonalLine(int row, int col){
+    return ((row - this.row) == (col - this.col));
+  }
 }
