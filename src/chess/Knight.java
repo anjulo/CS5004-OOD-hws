@@ -22,12 +22,13 @@ public class Knight extends AbstractChessPiece {
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     super.checkBound(row, col);
 
-    final int HOR_MOVE = 2;
-    final int VER_MOVE = 1;
+    final int ONE_STEP = 1;
+    final int TWO_STEP = 2;
     if (super.canMove(row, col)) {
-      double horMove = col - this.col;
-      double verMove = row - this.row;
-      return (horMove == HOR_MOVE && verMove == VER_MOVE);
+      double horMove = Math.abs(col - this.col);
+      double verMove = Math.abs(row - this.row);
+      return ((horMove == ONE_STEP && verMove == TWO_STEP) ||
+                                      (horMove == TWO_STEP && verMove == ONE_STEP));
     }
     return false;
   }
