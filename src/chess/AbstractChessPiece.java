@@ -56,7 +56,7 @@ public abstract class AbstractChessPiece implements ChessPiece {
   }
   public boolean canKill(ChessPiece piece) {
     checkBound(piece.getRow(), piece.getColumn());
-    return (this.canMove(piece.getRow(), piece.getColumn()) && (this.color != piece.getColor()));
+    return ((this.color != piece.getColor()) && this.canMove(piece.getRow(), piece.getColumn()));
   }
 
   /**
