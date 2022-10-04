@@ -30,6 +30,10 @@ public abstract class AbstractChessPiece implements ChessPiece {
     return this.color;
   }
 
+  public boolean canKill(ChessPiece piece){
+    return this.canMove(piece.getRow(), piece.getColumn());
+  }
+
   public void checkBound(int row, int col) throws IllegalArgumentException {
 
     final int MINIMUM_DIMENTION = 0;
