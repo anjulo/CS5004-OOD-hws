@@ -1,8 +1,21 @@
 package chess;
 
-public class Queen extends AbstractChessPiece{
+/**
+ * The Queen concrete class.
+ */
+public class Queen extends AbstractChessPiece {
 
   private final double EPSILON = 0.01;
+
+  /**
+   * Instantiates a new Queen piece.
+   *
+   * @param row   the row
+   * @param col   the column
+   * @param color the color
+   * @throws IllegalArgumentException the illegal argument exception
+   */
+
   public Queen(int row, int col, Color color) throws IllegalArgumentException {
     super(row, col, color);
   }

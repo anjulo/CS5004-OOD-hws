@@ -1,38 +1,43 @@
 package chess;
 
-public class Pawn extends AbstractChessPiece{
+/**
+ * The Pawn concrete class.
+ */
+public class Pawn extends AbstractChessPiece {
+  /**
+   * Instantiates a new Pawn piece.
+   *
+   * @param row   the row
+   * @param col   the column
+   * @param color the color
+   * @throws IllegalArgumentException the illegal argument exception
+   */
   public Pawn(int row, int col, Color color) throws IllegalArgumentException {
 
     super(row, col, color);
 
-    if ((color == Color.BLACK && row == 0) || (color == Color.WHITE && row == 7)){
-      throw new IllegalArgumentException("No pawns may be created in the 'royal' row for" +
-                                                                              "their color");
+    if ((color == Color.BLACK && row == 0) || (color == Color.WHITE && row == 7)) {
+      throw new IllegalArgumentException("No pawns may be created in the 'royal' row for"
+                                                                        + "their color");
     }
   }
 
-   boolean firstMoveFlag = true;
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     super.checkBound(row, col);
 
     final int FIRST_MOVE_STEP = 2;
     final int NORMAL_STEP = 1;
-    if (col == this.col){
-      if (firstMoveFlag){
-
-        firstMoveFlag = false;
-        if (this.color == Color.WHITE){
+    if (col == this.col) {
+      if (this.isOnRoyalRow()) {
+        if (this.color == Color.WHITE) {
           return (((row - this.row) >= 0) && ((row - this.row) <= FIRST_MOVE_STEP));
-        }
-        else {
+        } else {
           return (((this.row - row) >= 0) && ((this.row - row) <= FIRST_MOVE_STEP));
         }
-      }
-      else { // not first move
-        if (this.color == Color.WHITE){
+      } else { // not first move
+        if (this.color == Color.WHITE) {
           return (((row - this.row) >= 0) && ((row - this.row) <= NORMAL_STEP));
-        }
-        else {
+        } else {
           return (((this.row - row) >= 0) && ((this.row - row) <= NORMAL_STEP));
         }
       }
@@ -42,7 +47,20 @@ public class Pawn extends AbstractChessPiece{
 
   @Override
   public boolean canKill(ChessPiece piece) {
-    return (this.canMove(piece.getRow(), this.getColumn()) &&
-                                      this.isOnDiagonalLine(piece.getRow(), this.getColumn()));
+    return (this.canMove(piece.getRow(), this.getColumn())
+                                  && this.isOnDiagonalLine(piece.getRow(), this.getColumn()));
+  }
+
+  /**
+   * Decides if a Pawn is on the royal row for its color.
+   *
+   * @return the boolean
+   */
+  public boolean isOnRoyalRow() {
+    if (this.getColor() == Color.WHITE) {
+      return (this.getRow() == 1);
+    } else {
+      return (this.getRow() == 6);
+    }
   }
 }

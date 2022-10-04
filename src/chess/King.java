@@ -1,7 +1,18 @@
 package chess;
 
-public class King extends AbstractChessPiece{
+/**
+ * The King concrete class.
+ */
+public class King extends AbstractChessPiece {
 
+  /**
+   * Instantiates a new King.
+   *
+   * @param row   the row
+   * @param col   the column
+   * @param color the color
+   * @throws IllegalArgumentException the illegal argument exception
+   */
   public King(int row, int col, Color color) throws IllegalArgumentException {
     super(row, col, color);
   }
@@ -14,7 +25,7 @@ public class King extends AbstractChessPiece{
     final double EPSILON = 0.01;
 
     double distanceMove = Math.sqrt(Math.pow(row - this.row, 2) + Math.pow(col - this.col, 2));
-    return (isOnHorOrVerLine(row, col) && Math.abs(distanceMove - oneSpaceHorVer) < EPSILON) ||
-            (isOnDiagonalLine(row, col) && Math.abs(distanceMove - oneSpaceDiag) < EPSILON);
+    return (isOnHorOrVerLine(row, col) && Math.abs(distanceMove - oneSpaceHorVer) < EPSILON)
+            || (isOnDiagonalLine(row, col) && Math.abs(distanceMove - oneSpaceDiag) < EPSILON);
   }
 }
