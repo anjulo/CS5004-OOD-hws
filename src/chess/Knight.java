@@ -16,8 +16,4 @@ public class Knight extends AbstractChessPiece {
 
     return (horMove == HOR_MOVE && verMove == VER_MOVE) ;
   }
-
-  public boolean canKill(ChessPiece piece) {
-    return false;
-  }
 }

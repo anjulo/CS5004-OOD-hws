@@ -10,8 +10,4 @@ public class Bishop extends AbstractChessPiece {
     super.checkBound(row, col);
     return (super.isOnDiagonalLine(row,col));
   }
-
-  public boolean canKill(ChessPiece piece) {
-    return false;
-  }
 }

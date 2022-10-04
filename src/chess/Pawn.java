@@ -39,4 +39,10 @@ public class Pawn extends AbstractChessPiece{
     }
     return false;
   }
+
+  @Override
+  public boolean canKill(ChessPiece piece) {
+    return (this.canMove(piece.getRow(), this.getColumn()) &&
+                                      this.isOnDiagonalLine(piece.getRow(), this.getColumn()));
+  }
 }
