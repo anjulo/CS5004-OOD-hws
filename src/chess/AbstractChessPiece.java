@@ -43,10 +43,10 @@ public abstract class AbstractChessPiece implements ChessPiece {
     }
   }
 
-  public boolean onHorzOrVerLine(int row, int col){
+  public boolean isOnHorOrVerLine(int row, int col){
     return (row == this.row || col == this.col);
   }
-  public boolean onDiagonalLine(int row, int col){
+  public boolean isOnDiagonalLine(int row, int col){
     return ((row - this.row) == (col - this.col));
   }
 }
