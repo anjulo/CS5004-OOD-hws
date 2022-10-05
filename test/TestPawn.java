@@ -22,9 +22,12 @@ public class TestPawn {
 
   }
   @Test(expected = IllegalArgumentException.class)
-  public void testSetUpExceptions(){
+  public void testPawnConstructor(){
     piece1 = new Pawn(0,2, Color.WHITE);
     piece2 = new Pawn(7,2, Color.BLACK);
+
+    // out of bound exception already tested
+    // in the test of the abstract class.
 
   }
 
