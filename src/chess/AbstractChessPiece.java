@@ -97,6 +97,6 @@ public abstract class AbstractChessPiece implements ChessPiece {
    * @return the boolean
    */
   public boolean isOnDiagonalLine(int row, int col) {
-    return ((row - this.row) == (col - this.col));
+    return (Math.abs(row - this.row) == Math.abs(col - this.col));
   }
 }
