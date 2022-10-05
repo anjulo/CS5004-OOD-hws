@@ -22,7 +22,6 @@ public class Queen extends AbstractChessPiece {
 
   @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
-    super.checkBound(row, col);
     if (super.canMove(row, col)) {
       return (super.isOnHorOrVerLine(row, col) || super.isOnDiagonalLine(row, col));
     }
