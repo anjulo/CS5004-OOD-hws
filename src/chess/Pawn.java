@@ -28,18 +28,18 @@ public class Pawn extends AbstractChessPiece {
     final int FIRST_MOVE_STEP = 2;
     final int NORMAL_STEP = 1;
     if (super.canMove(row, col)) {
-      if (col == this.col) {
+      if (col == this.getColumn()) {
         if (this.isOnPawnRow()) {
-          if (this.color == Color.WHITE) {
-            return (((row - this.row) >= 0) && ((row - this.row) <= FIRST_MOVE_STEP));
+          if (this.getColor() == Color.WHITE) {
+            return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= FIRST_MOVE_STEP));
           } else {
-            return (((this.row - row) >= 0) && ((this.row - row) <= FIRST_MOVE_STEP));
+            return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= FIRST_MOVE_STEP));
           }
         } else { // not first move
-          if (this.color == Color.WHITE) {
-            return (((row - this.row) >= 0) && ((row - this.row) <= NORMAL_STEP));
+          if (this.getColor() == Color.WHITE) {
+            return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= NORMAL_STEP));
           } else {
-            return (((this.row - row) >= 0) && ((this.row - row) <= NORMAL_STEP));
+            return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= NORMAL_STEP));
           }
         }
       }
@@ -52,12 +52,12 @@ public class Pawn extends AbstractChessPiece {
 
     if ((this.getColor() == Color.WHITE) && (piece.getColor() == Color.BLACK)){
       return (this.isOnDiagonalLine(piece.getRow(), piece.getColumn())
-                && (piece.getRow() - this.row == 1));
+                && (piece.getRow() - this.getRow() == 1));
 
 
     } else if ((this.getColor() == Color.BLACK) && (piece.getColor() == Color.WHITE)) {
       return (this.isOnDiagonalLine(piece.getRow(), piece.getColumn())
-              && (piece.getRow() - this.row == -1));
+              && (piece.getRow() - this.getRow() == -1));
     }
     return false;
   }

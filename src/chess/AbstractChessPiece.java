@@ -7,15 +7,15 @@ public abstract class AbstractChessPiece implements ChessPiece {
   /**
    * The piece's Row.
    */
-  protected int row;
+  private int row;
   /**
    * The piece's Column.
    */
-  protected int col;
+  private int col;
   /**
    * The piece's Color.
    */
-  protected Color color;
+  private Color color;
 
   /**
    * Instantiates a new abstract chess piece.
@@ -60,7 +60,7 @@ public abstract class AbstractChessPiece implements ChessPiece {
    * @param col the col
    * @throws IllegalArgumentException the illegal argument exception
    */
-  public void checkBound(int row, int col) throws IllegalArgumentException {
+  protected void checkBound(int row, int col) throws IllegalArgumentException {
 
     final int MINIMUM_DIMENSION = 0;
     final int MAXIMUM_DIMENSION = 7;
