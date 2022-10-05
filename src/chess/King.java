@@ -27,8 +27,8 @@ public class King extends AbstractChessPiece {
     if (super.canMove(row, col)) {
 
       double distanceMove = Math.sqrt(Math.pow(row - this.row, 2) + Math.pow(col - this.col, 2));
-      return (isOnHorOrVerLine(row, col) && Math.abs(distanceMove - oneStepHorVer) < EPSILON)
-              || (isOnDiagonalLine(row, col) && Math.abs(distanceMove - oneStepDiag) < EPSILON);
+      return ((isOnHorOrVerLine(row, col) && Math.abs(distanceMove - oneStepHorVer) <= EPSILON)
+                || (isOnDiagonalLine(row, col) && Math.abs(distanceMove - oneStepDiag) <= EPSILON));
     }
     return false;
   }
