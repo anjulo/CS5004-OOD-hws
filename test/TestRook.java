@@ -39,7 +39,7 @@ public class TestRook {
   }
 
   @Test
-  public void canKill(){
+  public void testCanKill(){
 
     assertTrue(piece1.canKill(new Bishop(5, 0, Color.BLACK)));
     assertTrue(piece1.canKill(new Knight(5, 1, Color.BLACK)));
