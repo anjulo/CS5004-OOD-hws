@@ -24,7 +24,6 @@ public class Pawn extends AbstractChessPiece {
 
   @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
-    super.checkBound(row, col);
 
     final int FIRST_MOVE_STEP = 2;
     final int NORMAL_STEP = 1;

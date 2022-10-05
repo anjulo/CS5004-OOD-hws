@@ -19,7 +19,6 @@ public class King extends AbstractChessPiece {
 
   @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
-    super.checkBound(row, col);
 
     final double oneStepHorVer = 1.00;
     final double oneStepDiag = 1.414; // sqrt(1^2 + 1^2)

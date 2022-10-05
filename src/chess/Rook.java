@@ -19,8 +19,6 @@ public class Rook extends AbstractChessPiece {
 
   @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
-    super.checkBound(row, col);
-
     if (super.canMove(row, col)) {
       return isOnHorOrVerLine(row, col);
     }

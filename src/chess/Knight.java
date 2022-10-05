@@ -20,10 +20,10 @@ public class Knight extends AbstractChessPiece {
 
   @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
-    super.checkBound(row, col);
 
     final int ONE_STEP = 1;
     final int TWO_STEP = 2;
+
     if (super.canMove(row, col)) {
       double horMove = Math.abs(col - this.col);
       double verMove = Math.abs(row - this.row);
