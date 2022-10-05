@@ -28,12 +28,6 @@ public abstract class AbstractChessPiece implements ChessPiece {
   public AbstractChessPiece(int row, int col, Color color) throws IllegalArgumentException {
 
     this.checkBound(row, col);
-    if (color != Color.BLACK && color != Color.WHITE) {
-      throw new IllegalArgumentException("Chess Piece color can't only be black or white!");
-    }
-
-    // Do i need to do more excetion checks?
-
     this.row = row;
     this.col = col;
     this.color = color;
