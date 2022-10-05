@@ -29,7 +29,7 @@ public class Pawn extends AbstractChessPiece {
     final int NORMAL_STEP = 1;
     if (super.canMove(row, col)) {
       if (col == this.col) {
-        if (this.isOnRoyalRow()) {
+        if (this.isOnPawnRow()) {
           if (this.color == Color.WHITE) {
             return (((row - this.row) >= 0) && ((row - this.row) <= FIRST_MOVE_STEP));
           } else {
@@ -67,7 +67,7 @@ public class Pawn extends AbstractChessPiece {
    *
    * @return the boolean
    */
-  public boolean isOnRoyalRow() {
+  public boolean isOnPawnRow() {
     if (this.getColor() == Color.WHITE) {
       return (this.getRow() == 1);
     } else {
