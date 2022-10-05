@@ -50,15 +50,17 @@ public class Pawn extends AbstractChessPiece {
 
   @Override
   public boolean canKill(ChessPiece piece) {
-    checkBound(piece.getRow(), piece.getColumn());
 
-    double distance = Math.sqrt(Math.pow(this.row - piece.getRow(), 2)
-                                 + Math.pow(this.col - piece.getColumn(), 2));
-    final double oneStepDiag = 1.414; // sqrt(1^2 + 1^2)
-    final double EPSILON = 0.01;
-    return ((this.color != piece.getColor())
-                && this.isOnDiagonalLine(piece.getRow(), piece.getColumn())
-                && Math.abs(distance - oneStepDiag) <= EPSILON);
+    if ((this.getColor() == Color.WHITE) && (piece.getColor() == Color.BLACK)){
+      return (this.isOnDiagonalLine(piece.getRow(), piece.getColumn())
+                && (piece.getRow() - this.row == 1));
+
+
+    } else if ((this.getColor() == Color.BLACK) && (piece.getColor() == Color.WHITE)) {
+      return (this.isOnDiagonalLine(piece.getRow(), piece.getColumn())
+              && (piece.getRow() - this.row == -1));
+    }
+    return false;
   }
 
   /**
