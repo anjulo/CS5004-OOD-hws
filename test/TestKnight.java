@@ -20,8 +20,10 @@ public class TestKnight {
    * The Piece 1.
    */
   Knight piece1;
+  /**
+   * The Piece 2.
+   */
   Knight piece2;
-  Knight piece3;
 
 
   /**
@@ -32,6 +34,7 @@ public class TestKnight {
   @Before
   public void setUp() throws IllegalArgumentException {
     piece1 = new Knight(5, 2, Color.WHITE);
+    piece2 = new Knight(6, 2, Color.BLACK);
   }
 
   /**
@@ -90,15 +93,15 @@ public class TestKnight {
     assertTrue(piece1.canKill(new Knight(7, 1, Color.BLACK)));
     assertTrue(piece1.canKill(new Rook(7, 3, Color.BLACK)));
 
-    assertTrue(piece1.canKill(new Knight(5, 1, Color.BLACK)));
-    assertTrue(piece1.canKill(new Bishop(5, 2, Color.BLACK)));
-    assertTrue(piece1.canKill(new King(5, 3, Color.BLACK)));
-    assertTrue(piece1.canKill(new Pawn(4, 1, Color.BLACK)));
-    assertTrue(piece1.canKill(new Queen(4, 2, Color.BLACK)));
-    assertTrue(piece1.canKill(new Rook(4, 3, Color.BLACK)));
-    assertTrue(piece1.canKill(new Knight(6, 1, Color.BLACK)));
-    assertTrue(piece1.canKill(new Rook(6, 2, Color.BLACK)));
-    assertTrue(piece1.canKill(new Rook(6, 3, Color.BLACK)));
+    assertFalse(piece1.canKill(new Knight(5, 1, Color.BLACK)));
+    assertFalse(piece1.canKill(new Bishop(5, 2, Color.BLACK)));
+    assertFalse(piece1.canKill(new King(5, 3, Color.BLACK)));
+    assertFalse(piece1.canKill(new Pawn(4, 1, Color.BLACK)));
+    assertFalse(piece1.canKill(new Queen(4, 2, Color.BLACK)));
+    assertFalse(piece1.canKill(new Rook(4, 3, Color.BLACK)));
+    assertFalse(piece1.canKill(new Knight(6, 1, Color.BLACK)));
+    assertFalse(piece1.canKill(new Rook(6, 2, Color.BLACK)));
+    assertFalse(piece1.canKill(new Rook(6, 3, Color.BLACK)));
 
     assertFalse(piece1.canKill(new Knight(3, 1, Color.WHITE)));
     assertFalse(piece1.canKill(new Bishop(3, 3, Color.WHITE)));

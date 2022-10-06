@@ -20,15 +20,20 @@ public class TestKing {
    * The Piece 1.
    */
   King piece1;
+  /**
+   * The Piece 2.
+   */
+  King piece2;
 
   /**
    * Create the king objects for test purpose.
    *
-   * @throws IllegalArgumentException if the position is out of bound.
+   * @throws Exception the exception
    */
   @Before
   public void setUp() throws Exception {
     piece1 = new King(5, 2, Color.BLACK);
+    piece2 = new King(6, 2, Color.WHITE);
   }
 
   /**

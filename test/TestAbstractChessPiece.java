@@ -1,9 +1,13 @@
 import static org.junit.Assert.assertEquals;
 
 import chess.AbstractChessPiece;
+import chess.Bishop;
 import chess.Color;
 import chess.King;
+import chess.Knight;
+import chess.Pawn;
 import chess.Queen;
+import chess.Rook;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +24,22 @@ public class TestAbstractChessPiece {
    * The Piece 2.
    */
   AbstractChessPiece piece2;
+  /**
+   * The Piece 3.
+   */
+  AbstractChessPiece piece3;
+  /**
+   * The Piece 4.
+   */
+  AbstractChessPiece piece4;
+  /**
+   * The Piece 5.
+   */
+  AbstractChessPiece piece5;
+  /**
+   * The Piece 6.
+   */
+  AbstractChessPiece piece6;
 
   /**
    * Create instances for test purpose.
@@ -28,8 +48,12 @@ public class TestAbstractChessPiece {
    */
   @Before
   public void setUp() throws IllegalArgumentException {
-    piece1 = new King(5, 2, Color.WHITE);
+    piece1 = new King(5, 2, Color.BLACK);
     piece2 = new Queen(0, 7, Color.BLACK);
+    piece3 = new Knight(1, 6, Color.BLACK);
+    piece4 = new Rook(3, 5, Color.WHITE);
+    piece5 = new Bishop(4, 4, Color.WHITE);
+    piece6 = new Pawn(3, 7, Color.WHITE);
   }
 
   /**
@@ -38,9 +62,9 @@ public class TestAbstractChessPiece {
   @Test (expected = IllegalArgumentException.class)
   public void testConstructorExceptions() {
     piece1 = new King(5, 8, Color.BLACK);
-    piece2 = new Queen(5, 2, Color.WHITE);
-    piece1 = new King(5, -1, Color.BLACK);
-    piece2 = new Queen(-1, 2, Color.WHITE);
+    piece2 = new Queen(8, 2, Color.WHITE);
+    piece3 = new King(5, -1, Color.WHITE);
+    piece4 = new Queen(-1, 2, Color.BLACK);
   }
 
   /**
@@ -50,6 +74,11 @@ public class TestAbstractChessPiece {
   public void testGetRow() {
     assertEquals(5, piece1.getRow(), 0.01);
     assertEquals(0, piece2.getRow(), 0.01);
+    assertEquals(1, piece3.getRow(), 0.01);
+    assertEquals(3, piece4.getRow(), 0.01);
+    assertEquals(4, piece5.getRow(), 0.01);
+    assertEquals(3, piece6.getRow(), 0.01);
+
   }
 
   /**
@@ -59,6 +88,10 @@ public class TestAbstractChessPiece {
   public void testGetColumn() {
     assertEquals(2, piece1.getColumn(), 0.01);
     assertEquals(7, piece2.getColumn(), 0.01);
+    assertEquals(6, piece3.getColumn(), 0.01);
+    assertEquals(5, piece4.getColumn(), 0.01);
+    assertEquals(4, piece5.getColumn(), 0.01);
+    assertEquals(7, piece6.getColumn(), 0.01);
   }
 
   /**
@@ -66,8 +99,13 @@ public class TestAbstractChessPiece {
    */
   @Test
   public void testGetColor() {
-    assertEquals(Color.WHITE, piece1.getColor());
+    assertEquals(Color.BLACK, piece1.getColor());
     assertEquals(Color.BLACK, piece2.getColor());
+    assertEquals(Color.BLACK, piece3.getColor());
+    assertEquals(Color.WHITE, piece4.getColor());
+    assertEquals(Color.WHITE, piece5.getColor());
+    assertEquals(Color.WHITE, piece6.getColor());
+
   }
 
   /*

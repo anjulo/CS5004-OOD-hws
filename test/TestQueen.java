@@ -20,6 +20,10 @@ public class TestQueen {
    * The Piece 1.
    */
   Queen piece1;
+  /**
+   * The Piece 2.
+   */
+  Queen piece2;
 
   /**
    * Create the queen objects for test purpose.
@@ -29,6 +33,7 @@ public class TestQueen {
   @Before
   public void setUp() throws IllegalArgumentException {
     piece1 = new Queen(5, 2, Color.BLACK);
+    piece2 = new Queen(6, 1, Color.WHITE);
   }
 
   /**
