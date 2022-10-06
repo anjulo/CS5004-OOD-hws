@@ -89,7 +89,7 @@ public abstract class AbstractChessPiece implements ChessPiece {
    * @param col the col
    * @throws IllegalArgumentException the illegal argument exception
    */
-  protected void checkBound(int row, int col) throws IllegalArgumentException {
+  private void checkBound(int row, int col) throws IllegalArgumentException {
 
     final int MINIMUM_DIMENSION = 0;
     final int MAXIMUM_DIMENSION = 7;
