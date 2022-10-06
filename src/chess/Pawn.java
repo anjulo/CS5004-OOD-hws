@@ -29,19 +29,21 @@ public class Pawn extends AbstractChessPiece {
   @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
 
-    final int TWO_STEP = 2;
     final int ONE_STEP = 1;
+    final int TWO_STEP = 2;
+    final int WHITE_ROYAL_ROW = 1;
+    final int BLACK_ROYAL_ROW = 6;
     if (super.canMove(row, col) && col == this.getColumn()) {
-      if (this.isOnPawnRow()) { // first move
-        if (this.getColor() == Color.WHITE) { // White
+      if (this.getColor() == Color.WHITE) { // White
+        if (this.getRow() == WHITE_ROYAL_ROW) {
           return (((row - this.getRow()) == ONE_STEP) || ((row - this.getRow()) == TWO_STEP));
-        } else { // Black
-          return (((this.getRow() - row) == ONE_STEP) || ((this.getRow() - row) == TWO_STEP));
-        }
-      } else { // non-first move
-        if (this.getColor() == Color.WHITE) { //white
+        } else {
           return ((row - this.getRow()) == ONE_STEP);
-        } else { // Black
+        }
+      } else { // Black
+        if (this.getRow() == BLACK_ROYAL_ROW) {
+          return (((this.getRow() - row) == ONE_STEP) || ((this.getRow() - row) == TWO_STEP));
+        } else {
           return ((this.getRow() - row) == ONE_STEP);
         }
       }
