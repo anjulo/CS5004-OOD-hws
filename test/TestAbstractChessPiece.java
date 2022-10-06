@@ -1,51 +1,76 @@
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 import chess.AbstractChessPiece;
 import chess.Color;
 import chess.King;
 import chess.Queen;
+import org.junit.Before;
+import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
+/**
+ * The test class for abstract class.
+ */
 public class TestAbstractChessPiece {
 
+  /**
+   * The Piece 1.
+   */
   AbstractChessPiece piece1;
+  /**
+   * The Piece 2.
+   */
   AbstractChessPiece piece2;
-  @Before
-  public void setUp() throws Exception {
 
-    piece1 = new King(5,2, Color.WHITE);
-    piece2 = new Queen(0,7, Color.BLACK);
+  /**
+   * Create instances for test purpose.
+   *
+   * @throws IllegalArgumentException if the position is out of bound.
+   */
+  @Before
+  public void setUp() throws IllegalArgumentException {
+    piece1 = new King(5, 2, Color.WHITE);
+    piece2 = new Queen(0, 7, Color.BLACK);
   }
 
+  /**
+   * Test constructor exceptions.
+   */
   @Test (expected = IllegalArgumentException.class)
-  public void testConstructorExceptions(){
-    piece1 = new King(5,8, Color.BLACK);
+  public void testConstructorExceptions() {
+    piece1 = new King(5, 8, Color.BLACK);
     piece2 = new Queen(5, 2, Color.WHITE);
-    piece1 = new King(5,-1, Color.BLACK);
+    piece1 = new King(5, -1, Color.BLACK);
     piece2 = new Queen(-1, 2, Color.WHITE);
   }
 
+  /**
+   * Test getter for row number.
+   */
   @Test
   public void testGetRow() {
     assertEquals(5, piece1.getRow(), 0.01);
     assertEquals(0, piece2.getRow(), 0.01);
   }
 
+  /**
+   * Test getter for column number.
+   */
   @Test
   public void testGetColumn() {
     assertEquals(2, piece1.getColumn(), 0.01);
     assertEquals(7, piece2.getColumn(), 0.01);
   }
 
+  /**
+   * Test getter for color.
+   */
   @Test
   public void testGetColor() {
     assertEquals(Color.WHITE, piece1.getColor());
     assertEquals(Color.BLACK, piece2.getColor());
   }
+
+  /*
   @Test
   public void testIsOnHorOrVerLine() {
 
@@ -74,4 +99,6 @@ public class TestAbstractChessPiece {
     assertFalse(piece1.isOnDiagonalLine(5,3));
 
   }
+
+   */
 }

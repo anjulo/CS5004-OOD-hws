@@ -27,8 +27,8 @@ public class Knight extends AbstractChessPiece {
     if (super.canMove(row, col)) {
       double horMove = Math.abs(col - this.getColumn());
       double verMove = Math.abs(row - this.getRow());
-      return ((horMove == ONE_STEP && verMove == TWO_STEP) ||
-                                      (horMove == TWO_STEP && verMove == ONE_STEP));
+      return ((horMove == ONE_STEP && verMove == TWO_STEP)
+                                          || (horMove == TWO_STEP && verMove == ONE_STEP));
     }
     return false;
   }

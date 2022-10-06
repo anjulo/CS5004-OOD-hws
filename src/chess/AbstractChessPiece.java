@@ -60,7 +60,7 @@ public abstract class AbstractChessPiece implements ChessPiece {
    * @param col the col
    * @throws IllegalArgumentException the illegal argument exception
    */
-  private void checkBound(int row, int col) throws IllegalArgumentException {
+  protected void checkBound(int row, int col) throws IllegalArgumentException {
 
     final int MINIMUM_DIMENSION = 0;
     final int MAXIMUM_DIMENSION = 7;
@@ -73,24 +73,25 @@ public abstract class AbstractChessPiece implements ChessPiece {
   }
 
   /**
-   * Is on hor or ver line boolean.
+   * Tells us if the (row, col) point is on horizontal or vertical line relative to the
+   * position of the piece.
    *
    * @param row the row
    * @param col the col
-   * @return the boolean
+   * @return boolean
    */
-  public boolean isOnHorOrVerLine(int row, int col) {
+  protected boolean isOnHorOrVerLine(int row, int col) {
     return (row == this.row || col == this.col);
   }
 
   /**
-   * Is on diagonal line boolean.
+   * Tells us if the (row, col) point is on diagonal line relative to the position of the piece.
    *
    * @param row the row
    * @param col the col
    * @return the boolean
    */
-  public boolean isOnDiagonalLine(int row, int col) {
+  protected boolean isOnDiagonalLine(int row, int col) {
     return (Math.abs(row - this.row) == Math.abs(col - this.col));
   }
 }

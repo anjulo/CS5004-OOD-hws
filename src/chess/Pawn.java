@@ -32,13 +32,13 @@ public class Pawn extends AbstractChessPiece {
         if (this.isOnPawnRow()) {
           if (this.getColor() == Color.WHITE) {
             return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= FIRST_MOVE_STEP));
-          } else {
+          } else { // Black first move
             return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= FIRST_MOVE_STEP));
           }
         } else { // not first move
           if (this.getColor() == Color.WHITE) {
             return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= NORMAL_STEP));
-          } else {
+          } else { // Black not first move
             return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= NORMAL_STEP));
           }
         }
@@ -50,7 +50,7 @@ public class Pawn extends AbstractChessPiece {
   @Override
   public boolean canKill(ChessPiece piece) {
 
-    if ((this.getColor() == Color.WHITE) && (piece.getColor() == Color.BLACK)){
+    if ((this.getColor() == Color.WHITE) && (piece.getColor() == Color.BLACK)) {
       return (this.isOnDiagonalLine(piece.getRow(), piece.getColumn())
                 && (piece.getRow() - this.getRow() == 1));
 
@@ -63,11 +63,11 @@ public class Pawn extends AbstractChessPiece {
   }
 
   /**
-   * Decides if a Pawn is on the royal row for its color.
+   * Checks if a Pawn is on starting position.
    *
    * @return the boolean
    */
-  public boolean isOnPawnRow() {
+  private boolean isOnPawnRow() {
     if (this.getColor() == Color.WHITE) {
       return (this.getRow() == 1);
     } else {
