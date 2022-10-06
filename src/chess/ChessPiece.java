@@ -6,21 +6,21 @@ package chess;
 public interface ChessPiece {
 
   /**
-   * Gets row.
+   * Getter for the row number.
    *
    * @return row number
    */
   int getRow();
 
   /**
-   * Gets column.
+   * Getter for the column number.
    *
    * @return column number
    */
   int getColumn();
 
   /**
-   * Gets color.
+   * Getter for the color.
    *
    * @return color
    */

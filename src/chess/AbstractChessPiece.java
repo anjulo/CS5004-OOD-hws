@@ -33,22 +33,51 @@ public abstract class AbstractChessPiece implements ChessPiece {
     this.color = color;
   }
 
+  /**
+   * Getter for the row number.
+   *
+   * @return row number
+   */
   public int getRow() {
     return this.row;
   }
 
+  /**
+   * Getter for the column number.
+   *
+   * @return column number
+   */
   public int getColumn() {
     return this.col;
   }
 
+  /**
+   * Getter for the color.
+   *
+   * @return color
+   */
   public Color getColor() {
     return this.color;
   }
 
+  /**
+   * Tells us if a piece can move to a specific position on the board.
+   *
+   * @param row row number
+   * @param col col number
+   * @return the boolean
+   */
   public boolean canMove(int row, int col) throws IllegalArgumentException {
     this.checkBound(row, col);
     return ((row != this.row || col != this.col));
   }
+
+  /**
+   * Tells us if a piece can kill another piece if its position is given.
+   *
+   * @param piece the piece to be killed
+   * @return the boolean
+   */
   public boolean canKill(ChessPiece piece) {
     return ((this.color != piece.getColor()) && this.canMove(piece.getRow(), piece.getColumn()));
   }
