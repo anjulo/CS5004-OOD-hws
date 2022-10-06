@@ -16,7 +16,11 @@ public class Pawn extends AbstractChessPiece {
 
     super(row, col, color);
 
-    if ((color == Color.WHITE && row == 0) || (color == Color.BLACK && row == 7)) {
+    final int WHITE_ROYAL_ROW = 0;
+    final int BLACK_ROYAL_ROW = 7;
+
+    if ((color == Color.WHITE && row == WHITE_ROYAL_ROW)
+                  || (color == Color.BLACK && row == BLACK_ROYAL_ROW)) {
       throw new IllegalArgumentException("No pawns may be created in the 'royal' row for"
                                                                         + "their color");
     }
@@ -25,21 +29,21 @@ public class Pawn extends AbstractChessPiece {
   @Override
   public boolean canMove(int row, int col) throws IllegalArgumentException {
 
-    final int FIRST_MOVE_STEP = 2;
-    final int NORMAL_STEP = 1;
+    final int TWO_STEP = 2;
+    final int ONE_STEP = 1;
     if (super.canMove(row, col)) {
       if (col == this.getColumn()) {
         if (this.isOnPawnRow()) { // first move
           if (this.getColor() == Color.WHITE) { // White
-            return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= FIRST_MOVE_STEP));
+            return (((row - this.getRow()) == ONE_STEP) || ((row - this.getRow()) == TWO_STEP));
           } else { // Black
-            return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= FIRST_MOVE_STEP));
+            return (((this.getRow() - row) == ONE_STEP) || ((this.getRow() - row) == TWO_STEP));
           }
         } else { // non-first move
           if (this.getColor() == Color.WHITE) { //white
-            return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= NORMAL_STEP));
+            return ((row - this.getRow()) == ONE_STEP);
           } else { // Black
-            return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= NORMAL_STEP));
+            return ((this.getRow() - row) == ONE_STEP);
           }
         }
       }
