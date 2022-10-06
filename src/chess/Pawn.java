@@ -29,20 +29,21 @@ public class Pawn extends AbstractChessPiece {
     final int NORMAL_STEP = 1;
     if (super.canMove(row, col)) {
       if (col == this.getColumn()) {
-        if (this.isOnPawnRow()) {
-          if (this.getColor() == Color.WHITE) {
+        if (this.isOnPawnRow()) { // first move
+          if (this.getColor() == Color.WHITE) { // White
             return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= FIRST_MOVE_STEP));
-          } else { // Black first move
+          } else { // Black
             return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= FIRST_MOVE_STEP));
           }
-        } else { // not first move
-          if (this.getColor() == Color.WHITE) {
+        } else { // non-first move
+          if (this.getColor() == Color.WHITE) { //white
             return (((row - this.getRow()) >= 0) && ((row - this.getRow()) <= NORMAL_STEP));
-          } else { // Black not first move
+          } else { // Black
             return (((this.getRow() - row) >= 0) && ((this.getRow() - row) <= NORMAL_STEP));
           }
         }
       }
+      return false;
     }
     return false;
   }
