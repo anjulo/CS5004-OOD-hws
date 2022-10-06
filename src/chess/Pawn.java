@@ -31,23 +31,20 @@ public class Pawn extends AbstractChessPiece {
 
     final int TWO_STEP = 2;
     final int ONE_STEP = 1;
-    if (super.canMove(row, col)) {
-      if (col == this.getColumn()) {
-        if (this.isOnPawnRow()) { // first move
-          if (this.getColor() == Color.WHITE) { // White
-            return (((row - this.getRow()) == ONE_STEP) || ((row - this.getRow()) == TWO_STEP));
-          } else { // Black
-            return (((this.getRow() - row) == ONE_STEP) || ((this.getRow() - row) == TWO_STEP));
-          }
-        } else { // non-first move
-          if (this.getColor() == Color.WHITE) { //white
-            return ((row - this.getRow()) == ONE_STEP);
-          } else { // Black
-            return ((this.getRow() - row) == ONE_STEP);
-          }
+    if (super.canMove(row, col) && col == this.getColumn()) {
+      if (this.isOnPawnRow()) { // first move
+        if (this.getColor() == Color.WHITE) { // White
+          return (((row - this.getRow()) == ONE_STEP) || ((row - this.getRow()) == TWO_STEP));
+        } else { // Black
+          return (((this.getRow() - row) == ONE_STEP) || ((this.getRow() - row) == TWO_STEP));
+        }
+      } else { // non-first move
+        if (this.getColor() == Color.WHITE) { //white
+          return ((row - this.getRow()) == ONE_STEP);
+        } else { // Black
+          return ((this.getRow() - row) == ONE_STEP);
         }
       }
-      return false;
     }
     return false;
   }
