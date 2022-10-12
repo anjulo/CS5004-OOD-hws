@@ -6,7 +6,7 @@ public class Employee {
   private String id;
   private double payRate;
   private int payInterval;
-  private boolean isManager; //(1, 2 or 4)
+  private boolean isManager;
   private double hoursWorked;
   private boolean isSalaried;
   public Employee(String name, String id, double payRate, int payInterval, boolean isManager )
@@ -64,9 +64,12 @@ public class Employee {
     else{
       return new HourlyPaycheck(payRate, hoursWorked);
     }
-
-
-
   }
 
+  public String toString() {
+    String firstLine = String.format("Name: %s", this.name);
+    String secondLine = String.format("ID: %s", this.id);
+    String thirdLine = this.getPaycheck().toString();
+    return (firstLine + "\n" + secondLine + "\n" + thirdLine);
+  }
 }
