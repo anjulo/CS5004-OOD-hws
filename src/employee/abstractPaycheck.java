@@ -6,7 +6,10 @@ public abstract class abstractPaycheck implements IPaycheck {
 
   protected double payRate;
 
-  public abstractPaycheck(double payRate){
+  public abstractPaycheck(double payRate) throws IllegalArgumentException {
+    if(payRate < 0){
+      throw new IllegalArgumentException("Pay rate can't be negative!");
+    }
     this.payRate = payRate;
   }
 
