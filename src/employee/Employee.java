@@ -12,6 +12,7 @@ public class Employee {
   private boolean isManager;
   private double hoursWorked;
   private boolean isSalaried;
+  private IPaycheck paycheck;
 
   /**
    * Instantiates a new Employee.
@@ -42,6 +43,7 @@ public class Employee {
     this.payInterval = payInterval;
     this.isSalaried = true;
     this.isManager = isManager;
+    this.paycheck = new SalariedPaycheck(payRate, payInterval);
   }
 
   /**
@@ -74,6 +76,7 @@ public class Employee {
     this.hoursWorked = hoursWorked;
     this.isSalaried = false;
     this.isManager = false;
+    this.paycheck = new HourlyPaycheck(payRate, hoursWorked);
   }
 
   /**
