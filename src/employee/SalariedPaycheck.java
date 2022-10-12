@@ -8,14 +8,8 @@ public class SalariedPaycheck extends abstractPaycheck implements IPaycheck {
     this.payInterval = payInterval;
   }
 
+  @Override
   public double getTotalPay(){
     return (payRate/52 * payInterval);
   }
-
-  @Override
-  public double getPayAfterTaxes(){
-    return 0;
-  }
-
-
 }
