@@ -1,5 +1,8 @@
 package employee;
 
+/**
+ * The Employee class.
+ */
 public class Employee {
 
   private String name;
@@ -9,16 +12,27 @@ public class Employee {
   private boolean isManager;
   private double hoursWorked;
   private boolean isSalaried;
-  public Employee(String name, String id, double payRate, int payInterval, boolean isManager )
-                      throws IllegalArgumentException{
 
-    if(name == null || name.length() == 0){
+  /**
+   * Instantiates a new Employee.
+   *
+   * @param name        the name
+   * @param id          the id
+   * @param payRate     the pay rate
+   * @param payInterval the pay interval
+   * @param isManager   the is manager
+   * @throws IllegalArgumentException the illegal argument exception
+   */
+  public Employee(String name, String id, double payRate, int payInterval, boolean isManager)
+                      throws IllegalArgumentException {
+
+    if (name == null || name.length() == 0) {
       throw new IllegalArgumentException("Invalid employee name!");
     }
-    if(id == null || id.length() == 0){
+    if (id == null || id.length() == 0) {
       throw new IllegalArgumentException("Invalid employee ID!");
     }
-    if(payRate < 0){
+    if (payRate < 0) {
       throw new IllegalArgumentException("Negative pay rate! ");
     }
 
@@ -30,19 +44,28 @@ public class Employee {
     this.isManager = isManager;
   }
 
+  /**
+   * Instantiates a new Employee.
+   *
+   * @param name        the name
+   * @param id          the id
+   * @param payRate     the pay rate
+   * @param hoursWorked the hours worked
+   * @throws IllegalArgumentException the illegal argument exception
+   */
   public Employee(String name, String id, double payRate, double hoursWorked)
                     throws IllegalArgumentException {
 
-    if(name == null || name.length() == 0){
+    if (name == null || name.length() == 0) {
       throw new IllegalArgumentException("Invalid employee name!");
     }
-    if(id == null || id.length() == 0){
+    if (id == null || id.length() == 0) {
       throw new IllegalArgumentException("Invalid employee ID!");
     }
-    if(payRate < 0){
+    if (payRate < 0) {
       throw new IllegalArgumentException("Negative pay rate! ");
     }
-    if(hoursWorked < 0){
+    if (hoursWorked < 0) {
       throw new IllegalArgumentException("Negative worked hours!");
     }
     this.name = name;
@@ -53,19 +76,29 @@ public class Employee {
     this.isManager = false;
   }
 
-  public boolean isManager(){
+  /**
+   * Checks if an employee is manager.
+   *
+   * @return the boolean
+   */
+  public boolean isManager() {
     return this.isManager;
   }
 
-  public IPaycheck getPaycheck(){
-    if(isSalaried ){
+  /**
+   * Get paycheck for an employee.
+   *
+   * @return the paycheck
+   */
+  public IPaycheck getPaycheck() {
+    if (isSalaried) {
       return new SalariedPaycheck(payRate, payInterval);
-    }
-    else{
+    } else {
       return new HourlyPaycheck(payRate, hoursWorked);
     }
   }
 
+  @Override
   public String toString() {
     String firstLine = String.format("Name: %s", this.name);
     String secondLine = String.format("ID: %s", this.id);
