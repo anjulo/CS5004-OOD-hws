@@ -2,24 +2,50 @@ package employee;
 
 import java.text.DecimalFormat;
 
+/**
+ * The type Abstract paycheck.
+ */
 public abstract class abstractPaycheck implements IPaycheck {
 
+  /**
+   * The Pay rate class.
+   */
   protected double payRate;
 
+  /**
+   * Instantiates a new Abstract paycheck.
+   *
+   * @param payRate
+   * @throws IllegalArgumentException
+   */
   public abstractPaycheck(double payRate) throws IllegalArgumentException {
-    if(payRate < 0){
+    if (payRate < 0) {
       throw new IllegalArgumentException("Pay rate can't be negative!");
     }
     this.payRate = payRate;
   }
 
-  public double getPayRate(){
+  /**
+   * getter for pay rate.
+   *
+   * @return payRate
+   */
+  public double getPayRate() {
     return this.payRate;
   }
 
+  /**
+   * Abstract method for getting total pay.
+   *
+   * @return total pay.
+   */
   public abstract double getTotalPay();
 
-  //@Override
+  /**
+   * returns the pay after taxes are applied.
+   *
+   * @return pay after tax
+   */
   public double getPayAfterTaxes() {
     double totalPay = this.getTotalPay();
     double totalPayAfterTaxes;

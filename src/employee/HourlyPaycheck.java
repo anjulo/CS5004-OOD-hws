@@ -2,31 +2,55 @@ package employee;
 
 import java.text.DecimalFormat;
 
+/**
+ * The paycheck class for hourly paid employees.
+ */
 public class HourlyPaycheck extends abstractPaycheck implements IPaycheck {
 
   private double hoursWorked;
+
+  /**
+   * Instantiates a new HourlyPaycheck.
+   *
+   * @param payRate     the pay rate
+   * @param hoursWorked the hours worked
+   * @throws IllegalArgumentException exception for negative hours
+   */
   public HourlyPaycheck(double payRate, double hoursWorked) throws IllegalArgumentException {
     super(payRate);
 
-    if (hoursWorked < 0){
+    if (hoursWorked < 0) {
       throw new IllegalArgumentException("Hours worked can't be negative");
     }
 
     this.hoursWorked = hoursWorked;
   }
 
+  /**
+   * Gets hours worked.
+   *
+   * @return the hours worked
+   */
   public double getHoursWorked() {
     return this.hoursWorked;
   }
 
-  public void addHoursWorked(double hoursAdded){
+  /**
+   * Add hours worked.
+   *
+   * @param hoursAdded the hours added
+   */
+  public void addHoursWorked(double hoursAdded) {
 
     this.hoursWorked += hoursAdded;
-    if(this.hoursWorked < 0){
+    if (this.hoursWorked < 0) {
       this.hoursWorked = 0;
     }
   }
 
+  /**
+   * Reset hours worked.
+   */
   public void resetHoursWorked() {
     this.hoursWorked = 0.0;
   }
