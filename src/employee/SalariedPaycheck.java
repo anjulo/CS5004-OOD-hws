@@ -12,5 +12,10 @@ public class SalariedPaycheck extends abstractPaycheck implements IPaycheck {
     return (payRate/52 * payInterval);
   }
 
+  @Override
+  public double getPayAfterTaxes(){
+    return 0;
+  }
+
 
 }
