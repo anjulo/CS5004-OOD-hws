@@ -7,7 +7,16 @@ public class HourlyPaycheck extends abstractPaycheck implements IPaycheck {
   private double hoursWorked;
   public HourlyPaycheck(double payRate, double hoursWorked) throws IllegalArgumentException {
     super(payRate);
+
+    if (hoursWorked < 0){
+      throw new IllegalArgumentException("Hours worked can't be negative");
+    }
+
     this.hoursWorked = hoursWorked;
+  }
+
+  public double getHoursWorked() {
+    return this.hoursWorked;
   }
 
   public void addHoursWorked(double hoursAdded){
@@ -17,12 +26,9 @@ public class HourlyPaycheck extends abstractPaycheck implements IPaycheck {
       this.hoursWorked = 0;
     }
   }
-  public void resetHoursWorked() {
-    this.hoursWorked = 0;
-  }
 
-  public double getHoursWorked() {
-    return this.hoursWorked;
+  public void resetHoursWorked() {
+    this.hoursWorked = 0.0;
   }
 
   @Override
