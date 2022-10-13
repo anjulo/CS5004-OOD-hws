@@ -1,6 +1,5 @@
 package employee;
 
-import java.text.DecimalFormat;
 import java.util.Objects;
 
 /**
@@ -60,9 +59,9 @@ public class HourlyPaycheck extends abstractPaycheck implements IPaycheck {
     final double WORK_WEEK = 40.0;
     final double OVER_TIME = 1.5;
     if (this.hoursWorked <= WORK_WEEK) {
-      totalPay = this.hoursWorked * this.payRate;
+      totalPay = this.hoursWorked * this.getPayRate();
     } else {
-      totalPay = (WORK_WEEK + (this.hoursWorked - WORK_WEEK) *  OVER_TIME) * this.payRate;
+      totalPay = (WORK_WEEK + (this.hoursWorked - WORK_WEEK) *  OVER_TIME) * this.getPayRate();
     }
     return totalPay;
   }

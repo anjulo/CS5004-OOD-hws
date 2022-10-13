@@ -27,7 +27,7 @@ public class SalariedPaycheck extends abstractPaycheck implements IPaycheck {
 
   @Override
   public double getTotalPay() {
-    return (payRate / 52 * payInterval);
+    return (this.getPayRate() / 52 * payInterval);
   }
 
 

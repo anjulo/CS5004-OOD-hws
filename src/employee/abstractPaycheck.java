@@ -10,7 +10,7 @@ public abstract class abstractPaycheck implements IPaycheck {
   /**
    * The Pay rate class.
    */
-  protected double payRate;
+  private double payRate;
 
   /**
    * Instantiates a new Abstract paycheck.
