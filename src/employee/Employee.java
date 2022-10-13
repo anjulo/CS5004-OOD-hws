@@ -7,11 +7,7 @@ public class Employee {
 
   private String name;
   private String id;
-  private double payRate;
-  private int payInterval;
   private boolean isManager;
-  private double hoursWorked;
-  private boolean isSalaried;
   private IPaycheck paycheck;
 
   /**
@@ -42,8 +38,6 @@ public class Employee {
 
     this.name = name;
     this.id = id;
-    this.payRate = payRate;
-    this.payInterval = payInterval;
     this.isManager = isManager;
     this.paycheck = new SalariedPaycheck(payRate, payInterval);
   }
@@ -74,8 +68,6 @@ public class Employee {
     }
     this.name = name;
     this.id = id;
-    this.payRate = payRate;
-    this.hoursWorked = hoursWorked;
     this.isManager = false;
     this.paycheck = new HourlyPaycheck(payRate, hoursWorked);
   }
