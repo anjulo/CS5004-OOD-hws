@@ -19,8 +19,8 @@ public class SalariedPaycheck extends abstractPaycheck implements IPaycheck {
   public SalariedPaycheck(double payRate, int payInterval) throws IllegalArgumentException {
 
     super(payRate);
-    if (!(payInterval == 1 || payInterval == 2 || payInterval == 4)) {
-      throw new IllegalArgumentException("Pay interval should 1, 2 or 4!");
+    if (payInterval < 1) {
+      throw new IllegalArgumentException("Pay interval can't be less than 1!");
     }
     this.payInterval = payInterval;
   }
