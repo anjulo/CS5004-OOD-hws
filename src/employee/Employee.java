@@ -36,6 +36,9 @@ public class Employee {
     if (payRate < 0) {
       throw new IllegalArgumentException("Negative pay rate! ");
     }
+    if (payInterval < 1) {
+      throw new IllegalArgumentException("Pay interval can't be less than 1!");
+    }
 
     this.name = name;
     this.id = id;
