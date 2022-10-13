@@ -15,8 +15,8 @@ public abstract class abstractPaycheck implements IPaycheck {
   /**
    * Instantiates a new Abstract paycheck.
    *
-   * @param payRate
-   * @throws IllegalArgumentException
+   * @param payRate pay rate
+   * @throws IllegalArgumentException exception
    */
   public abstractPaycheck(double payRate) throws IllegalArgumentException {
     if (payRate < 0) {

@@ -47,7 +47,7 @@ public class EmployeeTest {
    * Test exception .
    */
   @Test(expected = IllegalArgumentException.class)
-  public void exceptionTest(){
+  public void exceptionTest() {
     new Employee(null, "sm", 240_000, 2, false);
     new Employee("", "sm", 240_000, 2, false);
     new Employee("Sam", null, 240_000, 2, false);
