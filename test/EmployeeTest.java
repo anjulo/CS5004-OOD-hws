@@ -48,6 +48,13 @@ public class EmployeeTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void exceptionTest(){
+    new Employee(null, "sm", 240_000, 2, false);
+    new Employee("", "sm", 240_000, 2, false);
+    new Employee("Sam", null, 240_000, 2, false);
+    new Employee("Sam", "", 240_000, 2, false);
+
+    new Employee("Sam", "sm", -0.01, 2, false);
+    new Employee("Sam", "sm", 240_000, 0, false);
 
   }
 
