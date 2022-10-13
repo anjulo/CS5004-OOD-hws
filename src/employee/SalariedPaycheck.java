@@ -1,5 +1,7 @@
 package employee;
 
+import java.util.Objects;
+
 /**
  * The paycheck class for salaried employees.
  */
@@ -26,5 +28,18 @@ public class SalariedPaycheck extends abstractPaycheck implements IPaycheck {
   @Override
   public double getTotalPay() {
     return (payRate / 52 * payInterval);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof SalariedPaycheck that)) return false;
+    return (payInterval == that.payInterval
+              && Double.compare(that.getPayRate(), this.getPayRate()) == 0);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(payInterval);
   }
 }

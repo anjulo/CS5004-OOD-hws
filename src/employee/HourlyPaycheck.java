@@ -1,6 +1,7 @@
 package employee;
 
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 /**
  * The paycheck class for hourly paid employees.
@@ -18,11 +19,9 @@ public class HourlyPaycheck extends abstractPaycheck implements IPaycheck {
    */
   public HourlyPaycheck(double payRate, double hoursWorked) throws IllegalArgumentException {
     super(payRate);
-
     if (hoursWorked < 0) {
       throw new IllegalArgumentException("Hours worked can't be negative");
     }
-
     this.hoursWorked = hoursWorked;
   }
 
@@ -66,5 +65,18 @@ public class HourlyPaycheck extends abstractPaycheck implements IPaycheck {
       totalPay = (WORK_WEEK + (this.hoursWorked - WORK_WEEK) *  OVER_TIME) * this.payRate;
     }
     return totalPay;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof HourlyPaycheck that)) return false;
+    return (Double.compare(that.getHoursWorked(), getHoursWorked()) == 0
+            && Double.compare(that.getPayRate(), this.getPayRate()) == 0);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getHoursWorked());
   }
 }
