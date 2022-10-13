@@ -67,16 +67,25 @@ public class HourlyPaycheck extends abstractPaycheck implements IPaycheck {
     return totalPay;
   }
 
+
+
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof HourlyPaycheck that)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof HourlyPaycheck)) {
+      return false;
+    }
+    HourlyPaycheck that = (HourlyPaycheck) o;
     return (Double.compare(that.getHoursWorked(), getHoursWorked()) == 0
-            && Double.compare(that.getPayRate(), this.getPayRate()) == 0);
+            && Double.compare(that.getPayRate(), getPayRate()) == 0);
   }
+
 
   @Override
   public int hashCode() {
     return Objects.hash(getHoursWorked());
   }
+
 }

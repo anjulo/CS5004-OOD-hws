@@ -30,16 +30,24 @@ public class SalariedPaycheck extends abstractPaycheck implements IPaycheck {
     return (payRate / 52 * payInterval);
   }
 
+
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof SalariedPaycheck that)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof SalariedPaycheck )) {
+      return false;
+    }
+    SalariedPaycheck that = (SalariedPaycheck)  o;
     return (payInterval == that.payInterval
               && Double.compare(that.getPayRate(), this.getPayRate()) == 0);
   }
+
 
   @Override
   public int hashCode() {
     return Objects.hash(payInterval);
   }
+
 }
