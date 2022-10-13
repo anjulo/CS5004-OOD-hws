@@ -56,6 +56,15 @@ public class EmployeeTest {
     new Employee("Sam", "sm", -0.01, 2, false);
     new Employee("Sam", "sm", 240_000, 0, false);
 
+    emp3 = new Employee(null, "tn", 100, 20);
+    emp3 = new Employee("", "tn", 100, 20);
+    emp3 = new Employee("Tony", null, 100, 20);
+    emp3 = new Employee("Tony", "", 100, 20);
+
+    emp3 = new Employee("Tony", "tn", -100, 20);
+    emp3 = new Employee("Tony", "tn", 100, -20);
+
+
   }
 
   /**
