@@ -2,8 +2,8 @@ package questionnaire;
 
 public abstract class abstractQuestion implements Question{
 
-  private String prompt;
-  private Boolean isRequired;
+  private final String prompt;
+  private final Boolean isRequired;
   private String answer;
 
   public abstractQuestion(String prompt, Boolean isRequired){
@@ -22,12 +22,12 @@ public abstract class abstractQuestion implements Question{
     this.answer = answer;
   }
 
-  public  String getAnswer(){
+  public String getAnswer(){
     return this.answer;
   }
 
-  public Question Copy(){
-
+  public Question Copy() throws CloneNotSupportedException {
+   return (abstractQuestion) super.clone();
   }
 
 }
