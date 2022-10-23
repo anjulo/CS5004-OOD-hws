@@ -6,10 +6,10 @@ public interface Question {
 
   Boolean isRequired();
 
-  void answer(String response);
+  void answer(String answer);
 
   String getAnswer();
 
-  Question Copy();
+  Question Copy() throws CloneNotSupportedException;
 
 }
