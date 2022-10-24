@@ -34,8 +34,13 @@ public abstract class abstractQuestion implements Question, Cloneable{
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof abstractQuestion that)) return false;
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof abstractQuestion)) {
+      return false;
+    }
+    abstractQuestion that = (abstractQuestion) o;
     return getPrompt().equals(that.getPrompt()) && isRequired.equals(that.isRequired);
   }
 
