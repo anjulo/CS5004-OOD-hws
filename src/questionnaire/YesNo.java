@@ -8,11 +8,11 @@ public class YesNo extends abstractQuestion{
 
   @Override
   public void answer(String answer){
-    if(answer.equalsIgnoreCase("Yes")
-            || answer.equalsIgnoreCase("No")){
-      super.answer(answer);
+    if (answer.equalsIgnoreCase("Yes")){
+      super.answer("Yes");
+    } else if(answer.equalsIgnoreCase("No")){
+      super.answer("No");
     }
-
   }
 
 }

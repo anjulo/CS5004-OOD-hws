@@ -10,6 +10,6 @@ public interface Question {
 
   String getAnswer();
 
-  Question Copy() throws CloneNotSupportedException;
+  Question copy() throws CloneNotSupportedException;
 
 }

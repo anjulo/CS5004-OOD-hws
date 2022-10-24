@@ -15,7 +15,8 @@ public class Likert extends abstractQuestion {
     List<LikertResponseOption> answerList
             = Arrays.stream(LikertResponseOption.values())
             .filter(r -> answer.equalsIgnoreCase(r.getText())).toList();
-    super.answer(answerList.get(0).getText());
-
+    if(!answerList.isEmpty()) {
+      super.answer(answerList.get(0).getText());
+    }
   }
 }
