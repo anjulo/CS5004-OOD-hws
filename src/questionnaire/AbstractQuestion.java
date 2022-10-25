@@ -2,13 +2,13 @@ package questionnaire;
 
 import java.util.Objects;
 
-public abstract class abstractQuestion implements Question, Cloneable{
+public abstract class AbstractQuestion implements Question, Cloneable{
 
   private final String prompt;
   private final Boolean isRequired;
   private String answer = "";
 
-  public abstractQuestion(String prompt, Boolean isRequired){
+  public AbstractQuestion(String prompt, Boolean isRequired){
     this.prompt = prompt;
     this.isRequired = isRequired;
   }
@@ -31,21 +31,11 @@ public abstract class abstractQuestion implements Question, Cloneable{
   public Question copy() throws CloneNotSupportedException {
    return (Question) super.clone();
   }
-
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (!(o instanceof abstractQuestion)) {
-      return false;
-    }
-    abstractQuestion that = (abstractQuestion) o;
-    return getPrompt().equals(that.getPrompt()) && isRequired.equals(that.isRequired);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getPrompt(), isRequired);
+  public String toString(){
+    return "Question: " +this.getPrompt() +
+            "\n \n" +
+            "Answer: " + this.getAnswer() +
+            "\n \n";
   }
 }
