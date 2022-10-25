@@ -2,9 +2,8 @@ package questionnaire;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Likert extends abstractQuestion {
+public class Likert extends AbstractQuestion {
 
   public Likert(String prompt, Boolean isRequired) {
     super(prompt, isRequired);

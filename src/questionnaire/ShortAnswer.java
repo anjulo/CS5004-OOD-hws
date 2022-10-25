@@ -1,6 +1,6 @@
 package questionnaire;
 
-public class ShortAnswer extends abstractQuestion{
+public class ShortAnswer extends AbstractQuestion {
 
   public ShortAnswer(String prompt, Boolean isRequired){
     super(prompt, isRequired);
