@@ -1,67 +1,197 @@
 package questionnaire;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
-public class QuestionnaireImpl implements Questionnaire{
+/**
+ * The concrete implementation of Questionnaire interface.
+ */
+public class QuestionnaireImpl implements Questionnaire {
 
+  private LinkedHashMap<String, Question> map;
+  /**
+   * The Key list.
+   */
+  List<String> keyList;
+  /**
+   * The Questions list.
+   */
+  List<Question> questionsList;
+
+  /**
+   * Constructor.
+   */
   public QuestionnaireImpl() {
-
+    map = new LinkedHashMap<>();
   }
 
-  public void addQuestion(String identifier, Question q){
-
+  /**
+   * Add a question to the questionnaire.
+   *
+   * @param identifier a name for the question <b>unique</b> within this questionnaire. Not null
+   *                   or empty.
+   * @param q the {@link Question} to be added to the questionnaire
+   */
+  public void addQuestion(String identifier, Question q) {
+    if (identifier != null && identifier.length() != 0) {
+      map.put(identifier, q);
+    }
   }
 
-  public void removeQuestion(String identifier){
-
+  /**
+   * Remove the question with the given identifier from the questionnaire.
+   *
+   * @param identifier the identifier of the question to be removed.
+   * @throws NoSuchElementException if there is no question with the given identifier.
+   */
+  public void removeQuestion(String identifier) throws NoSuchElementException {
+    if (map.containsKey(identifier)) {
+      map.remove(identifier);
+    } else {
+      throw new NoSuchElementException();
+    }
   }
 
-  public Question getQuestion(int num){
+  /**
+   * Get the question with the given number, based on the order in which it was added to the
+   * questionnaire, or the sorted order if the {@code sort()} method is called. The first question
+   * is 1, second 2, etc.
+   *
+   * @param num the number of the question, counting from 1
+   * @return the question
+   * @throws IndexOutOfBoundsException if there is no such question num
+   */
+  public Question getQuestion(int num) throws IndexOutOfBoundsException {
+    keyList = new ArrayList<>(this.map.keySet());
+    String key = keyList.get(num - 1);
+    return map.get(key);
+  }
+
+  /**
+   * Get the question with the given identifier (question having been previously added to the
+   * questionnaire).
+   *
+   * @param identifier the identifier of the question
+   * @return the question
+   * @throws NoSuchElementException if there is no question with the identifier
+   */
+  public  Question getQuestion(String identifier) {
+    keyList = new ArrayList<>(this.map.keySet());
+    if (keyList.contains(identifier)) {
+      return map.get(identifier);
+    } else {
+      throw new NoSuchElementException();
+    }
+  }
+
+  /**
+   * Return a list of all required questions in the questionnaire.
+   *
+   * @return the required questions.
+   */
+  public List<Question> getRequiredQuestions() {
+    questionsList = new ArrayList<>(this.map.values());
+
+    return questionsList.stream()
+            .filter(Question::isRequired).toList();
+  }
+
+  /**
+   * Return a list of all optional questions in the questionnaire.
+   *
+   * @return the optional questions.
+   */
+  public  List<Question> getOptionalQuestions() {
+    questionsList = new ArrayList<>(this.map.values());
+
+    return questionsList.stream()
+            .filter(q -> !q.isRequired()).toList();
+  }
+
+  /**
+   * Report if all required questions have some non-empty response.
+   *
+   * @return true if all required questions have responses, false otherwise.
+   */
+  public boolean isComplete() {
+    List<Question> requiredQuestionsList = this.getRequiredQuestions();
+    List<Question> hasResponse = requiredQuestionsList.stream()
+            .filter(q -> (q.getAnswer().length() != 0)).toList();
+
+    return (hasResponse.size() == requiredQuestionsList.size());
+  }
+
+  /**
+   * Return a list of just the responses to all the questions in the questionnaire.
+   *
+   * @return the responses
+   */
+  public List<String> getResponses() {
+    questionsList = new ArrayList<>(this.map.values());
+    return questionsList.stream()
+            .map(Question::getAnswer).toList();
+  }
+
+  /**
+   * Produce a new questionnaire containing just the questions where the given predicate returns
+   * true. The returned questionnaire is completely independent of this questionnaire. That is,
+   * the questions in the returned questionnaire are <b>copies</b> of the original questions.
+   *
+   * @param pq the predicate
+   * @return the new questionnaire
+   */
+  public  Questionnaire filter(Predicate<Question> pq) {
 
     return null;
   }
 
-  public  Question getQuestion(String identifier){
+  /**
+   * Sort the questions according to the given comparator. Return values from
+   * {@code getQuestion(int)} should reflect the new sorted order following sort.
+   *
+   * @param comp a comparator for Question
+   */
+  public void sort(Comparator<Question> comp) {
+
+  }
+
+  /**
+   * Produce a single summary value based on the given folding function and
+   * seed value.
+   *
+   * @param bf the folding function
+   * @param seed the seed value
+   * @param <R> the return type
+   * @return the summary value
+   */
+  public <R> R fold(BiFunction<Question, R, R> bf, R seed) {
 
     return null;
   }
 
-  public List<Question> getRequiredQuestions(){
-
-    return null;
-  }
-
-  public  List<Question> getOptionalQuestions(){
-
-    return null;
-  }
-
-  public boolean isComplete(){
-
-    return false;
-  }
-
-  public List<String> getResponses(){
-
-    return null;
-  }
-  public  Questionnaire filter(Predicate<Question> pq){
-
-    return null;
-  }
-
-  public void sort(Comparator<Question> comp){
-
-  }
-
-  public <R> R fold(BiFunction<Question, R, R> bf, R seed){
-
-    return null;
-  }
-
+  /**
+   * Convert the questionnaire into a single string in the format of
+   * Question: [prompt] then two newlines
+   * Answer: [answer] two newlines, and so on. Example result for a questionnaire with 3 questions:
+   * Question: What is your name?
+   *
+   * <p>Answer: Sir Lancelot
+   *
+   * <p>Question: What is your quest?
+   *
+   * <p>Answer: I seek the Holy Grail.
+   *
+   * <p>Question: What is your favorite color?
+   *
+   * <p>Answer: Blue.
+   *
+   * @return the questionnaire as a String
+   */
   public  String toString() {
 
     return null;
