@@ -9,9 +9,11 @@ public class ShortAnswer extends AbstractQuestion {
   }
 
   @Override
-  public void answer(String answer){
+  public void answer(String answer) throws IllegalArgumentException{
     if(answer.length() <= 280){
       super.answer(answer);
+    } else {
+      throw new IllegalArgumentException();
     }
   }
 
