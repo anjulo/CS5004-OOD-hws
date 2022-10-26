@@ -1,19 +1,22 @@
 package questionnaire;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * The concrete implementation of Questionnaire interface.
  */
 public class QuestionnaireImpl implements Questionnaire {
 
-  private LinkedHashMap<String, Question> map;
+  private Map<String, Question> map;
   /**
    * The Key list.
    */
@@ -23,11 +26,17 @@ public class QuestionnaireImpl implements Questionnaire {
    */
   List<Question> questionsList;
 
+  List<Map.Entry<String, Question>> listKeysQuestions;
+
   /**
    * Constructor.
    */
   public QuestionnaireImpl() {
-    map = new LinkedHashMap<>();
+    this.map = new LinkedHashMap<>();
+  }
+
+  public void setMap(Map<String, Question> map){
+    this.map = map;
   }
 
   /**
@@ -98,7 +107,7 @@ public class QuestionnaireImpl implements Questionnaire {
     questionsList = new ArrayList<>(this.map.values());
 
     return questionsList.stream()
-            .filter(Question::isRequired).toList();
+            .filter(Question::isRequired).collect(Collectors.toList());
   }
 
   /**
@@ -110,7 +119,8 @@ public class QuestionnaireImpl implements Questionnaire {
     questionsList = new ArrayList<>(this.map.values());
 
     return questionsList.stream()
-            .filter(q -> !q.isRequired()).toList();
+            .filter(q -> !q.isRequired())
+            .collect(Collectors.toList());
   }
 
   /**
@@ -120,10 +130,19 @@ public class QuestionnaireImpl implements Questionnaire {
    */
   public boolean isComplete() {
     List<Question> requiredQuestionsList = this.getRequiredQuestions();
+    for (Question q : requiredQuestionsList){
+      if(q.getAnswer().length() == 0) {
+        return false;
+      }
+    }
+    return true;
+    /*
     List<Question> hasResponse = requiredQuestionsList.stream()
-            .filter(q -> (q.getAnswer().length() != 0)).toList();
+            .filter(q -> (q.getAnswer().length() != 0)).collect(Collectors.toList());
 
-    return (hasResponse.size() == requiredQuestionsList.size());
+     */
+
+    //return (hasResponse.size() == requiredQuestionsList.size());
   }
 
   /**
@@ -134,7 +153,10 @@ public class QuestionnaireImpl implements Questionnaire {
   public List<String> getResponses() {
     questionsList = new ArrayList<>(this.map.values());
     return questionsList.stream()
-            .map(Question::getAnswer).toList();
+            .map(Question::getAnswer)
+            .filter(answer -> (answer.length() != 0))
+            .collect(Collectors.toList());
+
   }
 
   /**
@@ -146,7 +168,18 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the new questionnaire
    */
   public  Questionnaire filter(Predicate<Question> pq) {
+    /*
+    listKeysQuestions = new ArrayList<>(this.map.entrySet());
+    Questionnaire filteredQuestionnaire = new QuestionnaireImpl();
+    Map<String, Question>  newMap = listKeysQuestions
+            .stream()
+            .filter(pq) //
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                    (x, y) -> y, LinkedHashMap::new));
+    //filteredQuestionnaire.setMap(newMap);
 
+    return filteredQuestionnaire;
+     */
     return null;
   }
 
@@ -157,7 +190,16 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param comp a comparator for Question
    */
   public void sort(Comparator<Question> comp) {
+    /*
+    listKeysQuestions = new ArrayList<>(this.map.entrySet());
+    this.map.clear();
+    this.map = listKeysQuestions
+            .stream()
+            .sorted(comp) //
+            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                    (x, y) -> y, LinkedHashMap::new));
 
+     */
   }
 
   /**
@@ -193,8 +235,12 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the questionnaire as a String
    */
   public  String toString() {
-
-    return null;
+    questionsList = new ArrayList<>(this.map.values());
+    StringBuilder outString = new StringBuilder();
+    for (Question q : questionsList){
+      outString.append(q.toString());
+    }
+    return outString.toString();
   }
 
 }
