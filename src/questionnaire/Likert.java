@@ -18,7 +18,7 @@ public class Likert extends AbstractQuestion {
             .filter(r -> answer.equalsIgnoreCase(r.getText()))
             .collect(Collectors.toList());
     if(!answerList.isEmpty()) {
-      super.answer(answerList.get(0).getText());
+      super.answer(answer);
     }
   }
 
