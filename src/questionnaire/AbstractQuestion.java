@@ -2,15 +2,16 @@ package questionnaire;
 
 import java.util.Objects;
 
-public abstract class AbstractQuestion implements Question, Cloneable{
+public abstract class AbstractQuestion implements Question{
 
   private final String prompt;
   private final Boolean isRequired;
-  private String answer = "";
+  private String answer ;
 
   public AbstractQuestion(String prompt, Boolean isRequired){
     this.prompt = prompt;
     this.isRequired = isRequired;
+    this.answer = "";
   }
 
   public  String getPrompt(){
@@ -25,6 +26,9 @@ public abstract class AbstractQuestion implements Question, Cloneable{
   }
 
   public String getAnswer(){
+    if(this.answer == null){
+      return "";
+    }
     return this.answer;
   }
 
@@ -37,8 +41,7 @@ public abstract class AbstractQuestion implements Question, Cloneable{
   @Override
   public String toString(){
     return "Question: " +this.getPrompt() +
-            "\n \n" +
-            "Answer: " + this.getAnswer() +
-            "\n \n";
+            "\n\n" +
+            "Answer: " + this.getAnswer();
   }
 }
