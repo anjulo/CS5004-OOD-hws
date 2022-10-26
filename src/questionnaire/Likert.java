@@ -12,13 +12,18 @@ public class Likert extends AbstractQuestion {
   }
 
   @Override
-  public void answer(String answer) {
+  public void answer(String answer) throws NullPointerException, IllegalArgumentException{
+    if (answer ==null){
+      throw new NullPointerException();
+    }
     List<LikertResponseOption> answerList
             = Arrays.stream(LikertResponseOption.values())
             .filter(r -> answer.equalsIgnoreCase(r.getText()))
             .collect(Collectors.toList());
     if(!answerList.isEmpty()) {
       super.answer(answer);
+    } else {
+      throw new IllegalArgumentException();
     }
   }
 
