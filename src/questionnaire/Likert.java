@@ -3,6 +3,7 @@ package questionnaire;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Likert extends AbstractQuestion {
 
@@ -14,7 +15,8 @@ public class Likert extends AbstractQuestion {
   public void answer(String answer) {
     List<LikertResponseOption> answerList
             = Arrays.stream(LikertResponseOption.values())
-            .filter(r -> answer.equalsIgnoreCase(r.getText())).toList();
+            .filter(r -> answer.equalsIgnoreCase(r.getText()))
+            .collect(Collectors.toList());
     if(!answerList.isEmpty()) {
       super.answer(answerList.get(0).getText());
     }
