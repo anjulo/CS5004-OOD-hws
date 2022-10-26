@@ -3,10 +3,12 @@ package questionnaire;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -35,10 +37,6 @@ public class QuestionnaireImpl implements Questionnaire {
     this.map = new LinkedHashMap<>();
   }
 
-  public void setMap(Map<String, Question> map){
-    this.map = map;
-  }
-
   /**
    * Add a question to the questionnaire.
    *
@@ -46,10 +44,13 @@ public class QuestionnaireImpl implements Questionnaire {
    *                   or empty.
    * @param q the {@link Question} to be added to the questionnaire
    */
-  public void addQuestion(String identifier, Question q) {
+  public void addQuestion(String identifier, Question q) throws IllegalArgumentException {
     if (identifier != null && identifier.length() != 0) {
       map.put(identifier, q);
+    } else {
+      throw new IllegalArgumentException();
     }
+
   }
 
   /**
@@ -130,7 +131,7 @@ public class QuestionnaireImpl implements Questionnaire {
    */
   public boolean isComplete() {
     List<Question> requiredQuestionsList = this.getRequiredQuestions();
-    for (Question q : requiredQuestionsList){
+    for (Question q : requiredQuestionsList) {
       if(q.getAnswer().length() == 0) {
         return false;
       }
@@ -154,7 +155,7 @@ public class QuestionnaireImpl implements Questionnaire {
     questionsList = new ArrayList<>(this.map.values());
     return questionsList.stream()
             .map(Question::getAnswer)
-            .filter(answer -> (answer.length() != 0))
+            //.filter(Objects::nonNull) // answer -> (answer != null)
             .collect(Collectors.toList());
 
   }
@@ -167,20 +168,23 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param pq the predicate
    * @return the new questionnaire
    */
-  public  Questionnaire filter(Predicate<Question> pq) {
-    /*
-    listKeysQuestions = new ArrayList<>(this.map.entrySet());
-    Questionnaire filteredQuestionnaire = new QuestionnaireImpl();
-    Map<String, Question>  newMap = listKeysQuestions
-            .stream()
-            .filter(pq) //
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                    (x, y) -> y, LinkedHashMap::new));
-    //filteredQuestionnaire.setMap(newMap);
+  public  Questionnaire filter(Predicate<Question> pq) throws NullPointerException{
+    if( pq == null){
+      throw new NullPointerException();
+    } else {
+      listKeysQuestions = new ArrayList<>(this.map.entrySet());
+      QuestionnaireImpl filteredQuestionnaire = new QuestionnaireImpl();
+      Map<String, Question> newMap = listKeysQuestions
+              .stream()
+              .filter(kq -> pq.test(kq.getValue())) //
+              .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                      (x, y) -> y, LinkedHashMap::new));
+      // change implementation
+      filteredQuestionnaire.map = newMap;
 
-    return filteredQuestionnaire;
-     */
-    return null;
+      return (Questionnaire) filteredQuestionnaire;
+    }
+    //return null;
   }
 
   /**
@@ -190,16 +194,17 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param comp a comparator for Question
    */
   public void sort(Comparator<Question> comp) {
-    /*
-    listKeysQuestions = new ArrayList<>(this.map.entrySet());
-    this.map.clear();
-    this.map = listKeysQuestions
-            .stream()
-            .sorted(comp) //
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                    (x, y) -> y, LinkedHashMap::new));
-
-     */
+    if( comp == null){
+      throw new NullPointerException();
+    } else {
+      listKeysQuestions = new ArrayList<>(this.map.entrySet());
+      this.map.clear();
+      this.map = listKeysQuestions
+              .stream()
+              .sorted(Map.Entry.comparingByValue(comp)) //
+              .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                      (x, y) -> x, LinkedHashMap::new));
+    }
   }
 
   /**
@@ -237,8 +242,12 @@ public class QuestionnaireImpl implements Questionnaire {
   public  String toString() {
     questionsList = new ArrayList<>(this.map.values());
     StringBuilder outString = new StringBuilder();
+    int i = 0;
     for (Question q : questionsList){
       outString.append(q.toString());
+      if(i++ != questionsList.size() - 1) {
+        outString.append("\n\n");
+      }
     }
     return outString.toString();
   }
