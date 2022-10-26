@@ -9,11 +9,8 @@ public class ShortAnswer extends AbstractQuestion {
   }
 
   @Override
-  public void answer(String answer) throws NullPointerException, IllegalArgumentException{
-    if (answer == null){
-      throw new NullPointerException();
-    }
-    if(answer.length() <= 280){
+  public void answer(String answer) throws IllegalArgumentException{
+    if(answer != null && answer.length() <= 280){
       super.answer(answer);
     } else {
       throw new IllegalArgumentException();

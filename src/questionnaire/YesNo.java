@@ -9,12 +9,10 @@ public class YesNo extends AbstractQuestion {
   }
 
   @Override
-  public void answer(String answer) throws NullPointerException, IllegalArgumentException{
+  public void answer(String answer) throws IllegalArgumentException{
 
-    if(answer == null){
-      throw new NullPointerException();
-    } else if (answer.equalsIgnoreCase("Yes")
-            || answer.equalsIgnoreCase("No")) {
+    if (answer != null  && (answer.equalsIgnoreCase("Yes")
+            || answer.equalsIgnoreCase("No"))) {
       super.answer(answer);
     } else {
       throw new IllegalArgumentException();
