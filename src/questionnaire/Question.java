@@ -37,8 +37,7 @@ public interface Question {
    * implements deep copy of question.
    *
    * @return the question
-   * @throws CloneNotSupportedException the clone not supported exception
    */
-  Question copy() throws CloneNotSupportedException;
+  Question copy();
 
 }

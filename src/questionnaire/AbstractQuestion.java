@@ -28,9 +28,12 @@ public abstract class AbstractQuestion implements Question, Cloneable{
     return this.answer;
   }
 
-  public Question copy() throws CloneNotSupportedException {
+  /*
+  public Question copy() {
    return (Question) super.clone();
   }
+
+   */
   @Override
   public String toString(){
     return "Question: " +this.getPrompt() +

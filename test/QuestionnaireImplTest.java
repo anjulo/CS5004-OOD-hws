@@ -48,6 +48,7 @@ public class QuestionnaireImplTest {
     System.out.println(Q1.getQuestion("no"));
     System.out.println(Q1.getQuestion(3));
     System.out.println(Q1.getQuestion("nope"));
+    //assertEquals()
   }
 
   @Test
@@ -77,6 +78,7 @@ public class QuestionnaireImplTest {
 
   @Test
   public void getResponses() {
+    System.out.println(Q1.getResponses());
   }
 
   @Test
@@ -93,5 +95,6 @@ public class QuestionnaireImplTest {
 
   @Test
   public void testToString() {
+    System.out.println(Q1.toString());
   }
 }
