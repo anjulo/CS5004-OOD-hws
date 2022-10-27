@@ -1,9 +1,11 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -30,6 +32,22 @@ public class QuestionnaireImplTest {
    * Questionnaire 2.
    */
   Questionnaire Q2;
+
+  /**
+   * Questionnaire 3.
+   */
+  Questionnaire Q3;
+
+  /**
+   * Questionnaire 3.
+   */
+  Questionnaire Q4;
+
+  /**
+   * Questionnaire 5.
+   */
+  Questionnaire Q5;
+
 
   /**
    * Question 1.
@@ -64,23 +82,29 @@ public class QuestionnaireImplTest {
   @Before
   public void setUp() throws Exception {
 
+    // questions
     q1 = new YesNo("Annie, are you okay?", true);
     q1.answer("Yes");
-
     q2 =  new ShortAnswer("explain yourself?", false);
-    //q2.answer("I'm okay, dude");
-
     q3 = new Likert("So, you're okay?", true);
     q3.answer("Agree");
-
     q4 = new YesNo("yeap?", false);
-    //q4.answer("yes");
+    q5 = new ShortAnswer("Nope?", true);
+    Q2 = new QuestionnaireImpl();
 
+    // questionnaires
     Q1 = new QuestionnaireImpl();
     Q1.addQuestion("q1", q1);
     Q1.addQuestion("q2", q2);
     Q1.addQuestion("q3", q3);
     Q1.addQuestion("q4", q4);
+
+    Q2.addQuestion("q2", q1);
+    Q2.addQuestion("q4", q2);
+    Q2.addQuestion("q5", q5);
+    Q2.addQuestion("q3", q3);
+
+    Q3 = new QuestionnaireImpl();
   }
 
   /**
@@ -88,19 +112,15 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void addQuestion() {
-    q5 = new YesNo("Tired of testing?", true);
-
-    q6 = new ShortAnswer("How bad is it?", false);
-    q6.answer("I'm just telling you it sucks.");
+    q5 = new YesNo("Tired of testing?", false);
+    q6 = new ShortAnswer("How bad is it?", true);
+    q6.answer("I'm telling you it bananas.");
 
     Q1.addQuestion("q5", q5);
     Q1.addQuestion("q6", q6);
 
     assertEquals(q5, Q1.getQuestion("q5"));
     assertEquals(q6, Q1.getQuestion("q6"));
-
-    System.out.println(Q1.getQuestion("q6").getAnswer());
-
   }
 
   /**
@@ -113,7 +133,7 @@ public class QuestionnaireImplTest {
     Q1.addQuestion("", q5);
     q6 = new ShortAnswer("How bad is it?", false);
     q6.answer("I'm just telling you it sucks.");
-    Q1.addQuestion("null", q6);
+    Q1.addQuestion(null, q6);
   }
 
   /**
@@ -122,11 +142,20 @@ public class QuestionnaireImplTest {
   @Test(expected = NoSuchElementException.class)
   public void removeQuestion() {
     Q1.removeQuestion("q3");
-    assertNull(Q1.getQuestion("q3"));
+    Q1.getQuestion("q3");
     Q1.removeQuestion("q4");
-    assertNull(Q1.getQuestion("q4"));
+    Q1.getQuestion("q4");
 
     Q1.removeQuestion("q10");
+    Q1.removeQuestion("aha");
+
+    Q3.removeQuestion("lol");
+    Q3.removeQuestion("jaja");
+  }
+  @Test(expected = IllegalArgumentException.class)
+  public void removeQuestionArgumentException() {
+    Q1.removeQuestion("");
+    Q1.removeQuestion(null);
   }
 
   /**
@@ -144,9 +173,12 @@ public class QuestionnaireImplTest {
    */
   @Test (expected = IndexOutOfBoundsException.class)
   public void getQuestionByIndexException() {
-    assertEquals(q1, Q1.getQuestion(10));
-    assertEquals(q2, Q1.getQuestion(11));
-    assertEquals(q3, Q1.getQuestion(12));
+    Q1.getQuestion(10);
+    Q1.getQuestion(11);
+    Q1.getQuestion(12);
+
+    Q3.getQuestion(0);
+    Q3.getQuestion(1);
   }
 
   /**
@@ -164,9 +196,12 @@ public class QuestionnaireImplTest {
    */
   @Test(expected = NoSuchElementException.class)
   public void getQuestionByIdExceptions() {
-    assertEquals(q1, Q1.getQuestion("q10"));
-    assertEquals(q2, Q1.getQuestion("q11"));
-    assertEquals(q3, Q1.getQuestion("q12"));
+    Q1.getQuestion("q10");
+    Q1.getQuestion("q11");
+    Q1.getQuestion("hello");
+
+    Q3.getQuestion("lol");
+    Q3.getQuestion("jaja");
   }
 
   /**
@@ -175,8 +210,25 @@ public class QuestionnaireImplTest {
   @Test
   public void getRequiredQuestions() {
 
-    List<Question> requiredList = Arrays.asList(q1, q3);
-    assertEquals(requiredList, Q1.getRequiredQuestions());
+    q5 = new YesNo("Tired of testing?", false);
+    q6 = new ShortAnswer("How bad is it?", true);
+    q6.answer("I'm telling you it bananas.");
+
+    Q1.addQuestion("q5", q5);
+    Q1.addQuestion("q6", q6);
+
+    List<Question> requiredListQ1 = Arrays.asList(q1, q3, q6);
+    assertEquals(requiredListQ1, Q1.getRequiredQuestions());
+
+    List<Question> requiredListQ3 = Arrays.asList();
+    assertEquals(requiredListQ3, Q3.getRequiredQuestions());
+
+    Q3.addQuestion("q5", q5);
+    Q3.addQuestion("q2", q2);
+    Q3.addQuestion("q4", q4);
+
+    requiredListQ3 = Arrays.asList();
+    assertEquals(requiredListQ3, Q3.getRequiredQuestions());
   }
 
   /**
@@ -184,8 +236,25 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void getOptionalQuestions() {
-    List<Question> optionalList = Arrays.asList(q2, q4);
-    assertEquals(optionalList, Q1.getOptionalQuestions());
+    q5 = new YesNo("Tired of testing?", false);
+    q6 = new ShortAnswer("How bad is it?", true);
+    q6.answer("I'm telling you it bananas.");
+
+    Q1.addQuestion("q5", q5);
+    Q1.addQuestion("q6", q6);
+
+    List<Question> requiredListQ1 = Arrays.asList(q2, q4, q5);
+    assertEquals(requiredListQ1, Q1.getOptionalQuestions());
+
+    List<Question> requiredListQ3 = Arrays.asList();
+    assertEquals(requiredListQ3, Q3.getOptionalQuestions());
+
+    Q3.addQuestion("q6", q6);
+    Q3.addQuestion("q1", q1);
+    Q3.addQuestion("q3", q3);
+
+    requiredListQ3 = Arrays.asList();
+    assertEquals(requiredListQ3, Q3.getOptionalQuestions());
   }
 
   /**
@@ -194,6 +263,8 @@ public class QuestionnaireImplTest {
   @Test
   public void isComplete() {
     assertTrue(Q1.isComplete());
+    assertFalse(Q2.isComplete());
+    assertFalse(Q3.isComplete());
   }
 
   /**
@@ -201,8 +272,13 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void getResponses() {
-    List<String> responseList = Arrays.asList("Yes", "", "Agree", "");
-    assertEquals(responseList, Q1.getResponses());
+    List<String> responseListQ1 = Arrays.asList("Yes", "", "Agree", "");
+    List<String> responseListQ2 = Arrays.asList("Yes", "", "", "Agree");
+    List<String> responseListQ3 = Arrays.asList();
+
+    assertEquals(responseListQ1, Q1.getResponses());
+    assertEquals(responseListQ2, Q2.getResponses());
+    assertEquals(responseListQ3, Q3.getResponses());
   }
 
   /**
@@ -217,6 +293,25 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void sort() {
+    Comparator<Question> idComparator = new idComparator();
+
+    Q1.sort(idComparator);
+
+    Q4 = new QuestionnaireImpl();
+    Q4.addQuestion("q4", q4);
+    Q4.addQuestion("q3", q3);
+    Q4.addQuestion("q2", q2);
+    Q4.addQuestion("q1", q1);
+
+    assertEquals(Q1, Q4);
+
+    Q5 = new QuestionnaireImpl();
+    Q5.addQuestion("q3", q3);
+    Q5.addQuestion("q4", q4);
+    Q5.addQuestion("q2", q2);
+    Q5.addQuestion("q1", q1);
+
+    assertNotEquals(Q1, Q5);
   }
 
   /**
@@ -231,6 +326,42 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void testToString() {
-    System.out.println(Q1.toString());
+    System.out.println(Q3.toString());
+
+    String stringQ1 = "Question: Annie, are you okay?\n" +
+            "\n" +
+            "Answer: Yes\n" +
+            "\n" +
+            "Question: explain yourself?\n" +
+            "\n" +
+            "Answer: \n" +
+            "\n" +
+            "Question: So, you're okay?\n" +
+            "\n" +
+            "Answer: Agree\n" +
+            "\n" +
+            "Question: yeap?\n" +
+            "\n" +
+            "Answer: ";
+
+    String stringQ2 = "Question: Annie, are you okay?\n" +
+            "\n" +
+            "Answer: Yes\n" +
+            "\n" +
+            "Question: explain yourself?\n" +
+            "\n" +
+            "Answer: \n" +
+            "\n" +
+            "Question: Nope?\n" +
+            "\n" +
+            "Answer: \n" +
+            "\n" +
+            "Question: So, you're okay?\n" +
+            "\n" +
+            "Answer: Agree";
+
+    assertEquals(stringQ1, Q1.toString());
+    assertEquals(stringQ2, Q2.toString());
+    assertEquals("", Q3.toString());
   }
 }
