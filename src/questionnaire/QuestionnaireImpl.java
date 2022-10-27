@@ -65,7 +65,7 @@ public class QuestionnaireImpl implements Questionnaire {
    * @throws IndexOutOfBoundsException if there is no such question num
    */
   public Question getQuestion(int num) throws IndexOutOfBoundsException {
-    String key = getKeysList().get(num - 1);
+    String key = this.getKeysList().get(num - 1);
     return map.get(key);
   }
 
@@ -78,7 +78,7 @@ public class QuestionnaireImpl implements Questionnaire {
    * @throws NoSuchElementException if there is no question with the identifier
    */
   public  Question getQuestion(String identifier) throws NoSuchElementException {
-    if (getKeysList().contains(identifier)) {
+    if (this.getKeysList().contains(identifier)) {
       return map.get(identifier);
     } else {
       throw new NoSuchElementException();
@@ -92,7 +92,8 @@ public class QuestionnaireImpl implements Questionnaire {
    */
   public List<Question> getRequiredQuestions() {
 
-    return getQuestionsList().stream()
+    return this.getQuestionsList()
+            .stream()
             .filter(Question::isRequired).collect(Collectors.toList());
   }
 
@@ -103,7 +104,8 @@ public class QuestionnaireImpl implements Questionnaire {
    */
   public  List<Question> getOptionalQuestions() {
 
-    return getQuestionsList().stream()
+    return this.getQuestionsList()
+            .stream()
             .filter(q -> !q.isRequired())
             .collect(Collectors.toList());
   }
@@ -138,7 +140,8 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the responses
    */
   public List<String> getResponses() {
-    return getQuestionsList().stream()
+    return this.getQuestionsList()
+            .stream()
             .map(Question::getAnswer)
             //.filter(Objects::nonNull) // answer -> (answer != null)
             .collect(Collectors.toList());
@@ -159,7 +162,7 @@ public class QuestionnaireImpl implements Questionnaire {
     } else {
       QuestionnaireImpl filteredQuestionnaire = new QuestionnaireImpl();
       // change implementation
-      filteredQuestionnaire.map = getKeysQuestionsList()
+      filteredQuestionnaire.map = this.getKeysQuestionsList()
               .stream()
               .filter(kq -> pq.test(kq.getValue())) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
@@ -179,7 +182,7 @@ public class QuestionnaireImpl implements Questionnaire {
     if (comp == null) {
       throw new NullPointerException();
     } else {
-      List<Map.Entry<String, Question>> keysQuestionsList = getKeysQuestionsList();
+      List<Map.Entry<String, Question>> keysQuestionsList = this.getKeysQuestionsList();
       this.map.clear();
       this.map = keysQuestionsList
               .stream()
@@ -204,7 +207,7 @@ public class QuestionnaireImpl implements Questionnaire {
     }
 
     //R result = seed;
-    for (Question q : getQuestionsList()) {
+    for (Question q : this.getQuestionsList()) {
       seed = bf.apply(q, seed);
     }
     return seed;
@@ -238,9 +241,9 @@ public class QuestionnaireImpl implements Questionnaire {
   public  String toString() {
     StringBuilder outString = new StringBuilder();
     int i = 0;
-    for (Question q : getQuestionsList()) {
+    for (Question q : this.getQuestionsList()) {
       outString.append(q.toString());
-      if (i++ != getQuestionsList().size() - 1) {
+      if (i++ != this.getQuestionsList().size() - 1) {
         outString.append("\n\n");
       }
     }
@@ -269,7 +272,7 @@ public class QuestionnaireImpl implements Questionnaire {
     }
     QuestionnaireImpl that = (QuestionnaireImpl)  o;
 
-    return map.equals(that.map) && getKeysList().equals(getKeysList());
+    return map.equals(that.map) && this.getKeysList().equals(that.getKeysList());
   }
 
   @Override
