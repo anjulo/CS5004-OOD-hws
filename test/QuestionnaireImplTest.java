@@ -324,6 +324,11 @@ public class QuestionnaireImplTest {
     assertNotEquals(Q1, Q5);
   }
 
+  @Test(expected = NullPointerException.class)
+  public void SortExceptions() {
+    Q1.sort(null);
+  }
+
   /**
    * Test fold.
    */
