@@ -338,37 +338,39 @@ public class QuestionnaireImplTest {
   public void testToString() {
     System.out.println(Q3.toString());
 
-    String stringQ1 = "Question: Annie, are you okay?\n" +
-            "\n" +
-            "Answer: Yes\n" +
-            "\n" +
-            "Question: explain yourself?\n" +
-            "\n" +
-            "Answer: \n" +
-            "\n" +
-            "Question: So, you're okay?\n" +
-            "\n" +
-            "Answer: Agree\n" +
-            "\n" +
-            "Question: yeap?\n" +
-            "\n" +
-            "Answer: ";
+    String stringQ1 = """
+            Question: Annie, are you okay?
 
-    String stringQ2 = "Question: Annie, are you okay?\n" +
-            "\n" +
-            "Answer: Yes\n" +
-            "\n" +
-            "Question: explain yourself?\n" +
-            "\n" +
-            "Answer: \n" +
-            "\n" +
-            "Question: Nope?\n" +
-            "\n" +
-            "Answer: \n" +
-            "\n" +
-            "Question: So, you're okay?\n" +
-            "\n" +
-            "Answer: Agree";
+            Answer: Yes
+
+            Question: explain yourself?
+
+            Answer:\s
+
+            Question: So, you're okay?
+
+            Answer: Agree
+
+            Question: yeap?
+
+            Answer:\s""";
+
+    String stringQ2 = """
+            Question: Annie, are you okay?
+
+            Answer: Yes
+
+            Question: explain yourself?
+
+            Answer:\s
+
+            Question: Nope?
+
+            Answer:\s
+
+            Question: So, you're okay?
+
+            Answer: Agree""";
 
     assertEquals(stringQ1, Q1.toString());
     assertEquals(stringQ2, Q2.toString());
