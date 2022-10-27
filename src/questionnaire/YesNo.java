@@ -50,7 +50,7 @@ public class YesNo extends AbstractQuestion {
       return false;
     }
     YesNo that = (YesNo) o;
-    return getPrompt().equals(that.getPrompt())
+    return this.getPrompt().equals(that.getPrompt())
             && this.isRequired().equals(that.isRequired()
             && this.getAnswer().equals(that.getAnswer()));
   }

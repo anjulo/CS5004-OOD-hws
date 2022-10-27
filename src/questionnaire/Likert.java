@@ -60,7 +60,7 @@ public class Likert extends AbstractQuestion {
       return false;
     }
     Likert that = (Likert) o;
-    return getPrompt().equals(that.getPrompt())
+    return this.getPrompt().equals(that.getPrompt())
             && this.isRequired().equals(that.isRequired()
             && this.getAnswer().equals(that.getAnswer()));
   }

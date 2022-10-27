@@ -49,7 +49,7 @@ public class ShortAnswer extends AbstractQuestion {
       return false;
     }
     ShortAnswer that = (ShortAnswer) o;
-    return getPrompt().equals(that.getPrompt())
+    return this.getPrompt().equals(that.getPrompt())
             && this.isRequired().equals(that.isRequired()
             && this.getAnswer().equals(that.getAnswer()));
   }
