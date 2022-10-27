@@ -28,7 +28,7 @@ public class QuestionnaireImpl implements Questionnaire {
    */
   List<Question> questionsList;
 
-  List<Map.Entry<String, Question>> listKeysQuestions;
+  List<Map.Entry<String, Question>> keysQuestionsList;
 
   /**
    * Constructor.
@@ -132,7 +132,7 @@ public class QuestionnaireImpl implements Questionnaire {
   public boolean isComplete() {
     List<Question> requiredQuestionsList = this.getRequiredQuestions();
     for (Question q : requiredQuestionsList) {
-      if(q.getAnswer().length() == 0) {
+      if (q.getAnswer().length() == 0) {
         return false;
       }
     }
@@ -168,19 +168,18 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param pq the predicate
    * @return the new questionnaire
    */
-  public  Questionnaire filter(Predicate<Question> pq) throws NullPointerException{
-    if( pq == null){
+  public Questionnaire filter(Predicate<Question> pq) throws NullPointerException {
+    if (pq == null) {
       throw new NullPointerException();
     } else {
-      listKeysQuestions = new ArrayList<>(this.map.entrySet());
+      keysQuestionsList = new ArrayList<>(this.map.entrySet());
       QuestionnaireImpl filteredQuestionnaire = new QuestionnaireImpl();
-      Map<String, Question> newMap = listKeysQuestions
+      // change implementation
+      filteredQuestionnaire.map = keysQuestionsList
               .stream()
               .filter(kq -> pq.test(kq.getValue())) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                       (x, y) -> y, LinkedHashMap::new));
-      // change implementation
-      filteredQuestionnaire.map = newMap;
 
       return (Questionnaire) filteredQuestionnaire;
     }
@@ -194,12 +193,12 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param comp a comparator for Question
    */
   public void sort(Comparator<Question> comp) {
-    if( comp == null){
+    if (comp == null) {
       throw new NullPointerException();
     } else {
-      listKeysQuestions = new ArrayList<>(this.map.entrySet());
+      keysQuestionsList = new ArrayList<>(this.map.entrySet());
       this.map.clear();
-      this.map = listKeysQuestions
+      this.map = keysQuestionsList
               .stream()
               .sorted(Map.Entry.comparingByValue(comp)) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
@@ -216,9 +215,24 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param <R> the return type
    * @return the summary value
    */
-  public <R> R fold(BiFunction<Question, R, R> bf, R seed) {
+  public <R> R fold(BiFunction<Question, R, R> bf, R seed) throws IllegalArgumentException {
+    if (bf == null || seed == null) {
+      throw new IllegalArgumentException();
+    }
+    questionsList = new ArrayList<>(this.map.values());
 
-    return null;
+    //R result = seed;
+    for (Question q : questionsList) {
+      seed = bf.apply(q, seed);
+    }
+    return seed;
+    /*
+    R foldedValue = questionsList
+            .stream()
+            .reduce(seed, (a,b) -> bf.apply(b,a));
+    return foldedValue;
+
+     */
   }
 
   /**
@@ -243,9 +257,9 @@ public class QuestionnaireImpl implements Questionnaire {
     questionsList = new ArrayList<>(this.map.values());
     StringBuilder outString = new StringBuilder();
     int i = 0;
-    for (Question q : questionsList){
+    for (Question q : questionsList) {
       outString.append(q.toString());
-      if(i++ != questionsList.size() - 1) {
+      if (i++ != questionsList.size() - 1) {
         outString.append("\n\n");
       }
     }
