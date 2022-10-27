@@ -17,16 +17,6 @@ import java.util.stream.Collectors;
 public class QuestionnaireImpl implements Questionnaire {
 
   private Map<String, Question> map;
-  /**
-   * The Key list.
-   */
-  List<String> keyList;
-  /**
-   * The Questions list.
-   */
-  List<Question> questionsList;
-
-  List<Map.Entry<String, Question>> keysQuestionsList;
 
   /**
    * Constructor.
@@ -75,8 +65,7 @@ public class QuestionnaireImpl implements Questionnaire {
    * @throws IndexOutOfBoundsException if there is no such question num
    */
   public Question getQuestion(int num) throws IndexOutOfBoundsException {
-    keyList = new ArrayList<>(this.map.keySet());
-    String key = keyList.get(num - 1);
+    String key = getKeysList().get(num - 1);
     return map.get(key);
   }
 
@@ -89,8 +78,7 @@ public class QuestionnaireImpl implements Questionnaire {
    * @throws NoSuchElementException if there is no question with the identifier
    */
   public  Question getQuestion(String identifier) throws NoSuchElementException {
-    keyList = new ArrayList<>(this.map.keySet());
-    if (keyList.contains(identifier)) {
+    if (getKeysList().contains(identifier)) {
       return map.get(identifier);
     } else {
       throw new NoSuchElementException();
@@ -103,9 +91,8 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the required questions.
    */
   public List<Question> getRequiredQuestions() {
-    questionsList = new ArrayList<>(this.map.values());
 
-    return questionsList.stream()
+    return getQuestionsList().stream()
             .filter(Question::isRequired).collect(Collectors.toList());
   }
 
@@ -115,9 +102,8 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the optional questions.
    */
   public  List<Question> getOptionalQuestions() {
-    questionsList = new ArrayList<>(this.map.values());
 
-    return questionsList.stream()
+    return getQuestionsList().stream()
             .filter(q -> !q.isRequired())
             .collect(Collectors.toList());
   }
@@ -152,8 +138,7 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the responses
    */
   public List<String> getResponses() {
-    questionsList = new ArrayList<>(this.map.values());
-    return questionsList.stream()
+    return getQuestionsList().stream()
             .map(Question::getAnswer)
             //.filter(Objects::nonNull) // answer -> (answer != null)
             .collect(Collectors.toList());
@@ -172,10 +157,9 @@ public class QuestionnaireImpl implements Questionnaire {
     if (pq == null) {
       throw new NullPointerException();
     } else {
-      keysQuestionsList = new ArrayList<>(this.map.entrySet());
       QuestionnaireImpl filteredQuestionnaire = new QuestionnaireImpl();
       // change implementation
-      filteredQuestionnaire.map = keysQuestionsList
+      filteredQuestionnaire.map = getKeysQuestionsList()
               .stream()
               .filter(kq -> pq.test(kq.getValue())) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
@@ -195,9 +179,8 @@ public class QuestionnaireImpl implements Questionnaire {
     if (comp == null) {
       throw new NullPointerException();
     } else {
-      keysQuestionsList = new ArrayList<>(this.map.entrySet());
       this.map.clear();
-      this.map = keysQuestionsList
+      this.map = getKeysQuestionsList()
               .stream()
               .sorted(Map.Entry.comparingByValue(comp)) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
@@ -218,10 +201,9 @@ public class QuestionnaireImpl implements Questionnaire {
     if (bf == null || seed == null) {
       throw new IllegalArgumentException();
     }
-    questionsList = new ArrayList<>(this.map.values());
 
     //R result = seed;
-    for (Question q : questionsList) {
+    for (Question q : getQuestionsList()) {
       seed = bf.apply(q, seed);
     }
     return seed;
@@ -253,16 +235,25 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the questionnaire as a String
    */
   public  String toString() {
-    questionsList = new ArrayList<>(this.map.values());
     StringBuilder outString = new StringBuilder();
     int i = 0;
-    for (Question q : questionsList) {
+    for (Question q : getQuestionsList()) {
       outString.append(q.toString());
-      if (i++ != questionsList.size() - 1) {
+      if (i++ != getQuestionsList().size() - 1) {
         outString.append("\n\n");
       }
     }
     return outString.toString();
+  }
+
+  private List<Question> getQuestionsList(){
+    return new ArrayList<>(this.map.values());
+  }
+  private List<String> getKeysList(){
+    return new ArrayList<>(this.map.keySet());
+  }
+  private List<Map.Entry<String, Question>> getKeysQuestionsList(){
+    return  new ArrayList<>(this.map.entrySet());
   }
 
   @Override
