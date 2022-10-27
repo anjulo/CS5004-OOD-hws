@@ -47,7 +47,11 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param identifier the identifier of the question to be removed.
    * @throws NoSuchElementException if there is no question with the given identifier.
    */
-  public void removeQuestion(String identifier) throws NoSuchElementException {
+  public void removeQuestion(String identifier) throws NoSuchElementException,
+          IllegalArgumentException {
+    if(identifier == null || identifier.length() ==0){
+      throw new IllegalArgumentException();
+    }
     if (map.containsKey(identifier)) {
       map.remove(identifier);
     } else {
@@ -164,7 +168,7 @@ public class QuestionnaireImpl implements Questionnaire {
       // change implementation
       filteredQuestionnaire.map = this.getKeysQuestionsList()
               .stream()
-              .filter(kq -> pq.test(kq.getValue())) //
+              .filter(kq -> pq.test(kq.getValue().copy())) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                       (x, y) -> y, LinkedHashMap::new));
 
