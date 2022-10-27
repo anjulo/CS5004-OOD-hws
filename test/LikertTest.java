@@ -1,30 +1,61 @@
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import questionnaire.Question;
 import questionnaire.Likert;
+import questionnaire.Question;
 
-import static org.junit.Assert.*;
-
+/**
+ * Test class for Likert quesiton class.
+ */
 public class LikertTest {
 
+  /**
+   * Question 1.
+   */
   Question q1;
+  /**
+   * Question 2.
+   */
   Question q2;
+  /**
+   * Question 3.
+   */
   Question q3;
+  /**
+   * Question 4.
+   */
   Question q4;
+  /**
+   * Question 5.
+   */
   Question q5;
+  /**
+   * Question 6.
+   */
   Question q6;
+  /**
+   * Question 7.
+   */
   Question q7;
+  /**
+   * Question 8.
+   */
   Question q8;
+  /**
+   * Question 9.
+   */
   Question q9;
+  /**
+   * Question 10.
+   */
   Question q10;
-  Question q11;
-  Question q12;
-  Question q13;
-  Question q14;
-  Question q15;
 
-
+  /**
+   * Sets up objects for test.
+   *
+   * @throws Exception the exception
+   */
   @Before
   public void setUp() throws Exception {
     q1 = new Likert("Annie, are you okay?", true);
@@ -39,52 +70,57 @@ public class LikertTest {
     q9 = new Likert("So, Annie, are you okay?", true);
     q10 = new Likert("Annie, Okay?", false);
 
-    q11 = new Likert("Annie, are you okay?", true);
-    q12 = new Likert("Are you okay, Annie?", false);
-    q13 = new Likert("Will you tell us that you're okay?", true);
-    q14 = new Likert("So, Annie, are you okay?", false);
-    q15 = new Likert("Annie, Okay?", true);
   }
 
-  @Test
-  public void answer() {
-
-  }
-
+  /**
+   * Tests answer method.
+   */
   @org.junit.Test
-  public void getAnswer() {
+  public void answer() {
     q1.answer("Strongly Agree");
-    assertEquals("Strongly Agree",q1.getAnswer());
     q2.answer("Agree");
-    assertEquals("Agree", q2.getAnswer());
-    q3.answer("Neither Agree nor Disagree");
-    assertEquals("Neither Agree Nor Disagree", q3.getAnswer());
+    q3.answer("Neither Agree Nor Disagree");
     q4.answer("Disagree");
-    assertEquals("Disagree", q4.getAnswer());
     q5.answer("Strongly Disagree");
+
+    assertEquals("Strongly Agree", q1.getAnswer());
+    assertEquals("Agree", q2.getAnswer());
+    assertEquals("Neither Agree Nor Disagree", q3.getAnswer());
+    assertEquals("Disagree", q4.getAnswer());
     assertEquals("Strongly Disagree", q5.getAnswer());
 
     q6.answer("sTRONGLY aGREE");
-    assertEquals("Strongly Agree",q6.getAnswer());
     q7.answer("AGRee");
-    assertEquals("Agree", q7.getAnswer());
     q8.answer("NEITHER agree NOR disagree");
-    assertEquals("Neither Agree Nor Disagree", q8.getAnswer());
     q9.answer("disAGREE");
-    assertEquals("Disagree", q9.getAnswer());
     q10.answer("sTrOnGlY DiSaGrEe");
-    assertEquals("Strongly Disagree", q10.getAnswer());
 
-    q11.answer("Strongly Agree.");
-    assertNotEquals("Strongly Agree", q11.getAnswer());
-    q12.answer("Agreee");
-    assertNotEquals("Agree", q12.getAnswer());
-    q13.answer("Neither Agree no Disagree");
-    assertNotEquals("Neither Agree Nor Disagree", q13.getAnswer());
-    q14.answer("Disagre");
-    assertNotEquals("Disagree", q14.getAnswer());
-    q15.answer("Strongly Disagree!");
-    assertNotEquals("Strongly Disagree", q15.getAnswer());
+    assertEquals("sTRONGLY aGREE", q6.getAnswer());
+    assertEquals("AGRee", q7.getAnswer());
+    assertEquals("NEITHER agree NOR disagree", q8.getAnswer());
+    assertEquals("disAGREE", q9.getAnswer());
+    assertEquals("sTrOnGlY DiSaGrEe", q10.getAnswer());
+  }
+
+  /**
+   * Test exceptions from answer method.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void answerException() {
+    q1.answer("Strongly Agree.");
+    q2.answer("Agreee");
+    q3.answer("Neither Agree no Disagree");
+    q4.answer("Disagre");
+    q5.answer("Strongly Disagree!");
+
+    q6.answer("");
+    q7.answer("Not the correct response.");
+  }
+
+  /**
+   * Test copy method.
+   */
+  public void copy(){
 
   }
 }
