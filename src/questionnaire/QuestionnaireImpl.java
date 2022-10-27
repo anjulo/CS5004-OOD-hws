@@ -1,14 +1,11 @@
 package questionnaire;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Objects;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -90,7 +87,7 @@ public class QuestionnaireImpl implements Questionnaire {
    * @return the question
    * @throws NoSuchElementException if there is no question with the identifier
    */
-  public  Question getQuestion(String identifier) {
+  public  Question getQuestion(String identifier) throws NoSuchElementException {
     keyList = new ArrayList<>(this.map.keySet());
     if (keyList.contains(identifier)) {
       return map.get(identifier);
@@ -141,9 +138,11 @@ public class QuestionnaireImpl implements Questionnaire {
     List<Question> hasResponse = requiredQuestionsList.stream()
             .filter(q -> (q.getAnswer().length() != 0)).collect(Collectors.toList());
 
-     */
+
 
     //return (hasResponse.size() == requiredQuestionsList.size());
+
+     */
   }
 
   /**
@@ -183,7 +182,6 @@ public class QuestionnaireImpl implements Questionnaire {
 
       return (Questionnaire) filteredQuestionnaire;
     }
-    //return null;
   }
 
   /**
