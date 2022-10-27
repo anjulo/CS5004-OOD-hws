@@ -114,7 +114,7 @@ public class YesNoTest {
    * Test copy.
    */
   @Test
-  public void copy(){
+  public void copy() {
 
     q1.answer("Yes");
 

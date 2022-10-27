@@ -122,7 +122,8 @@ public class LikertTest {
   /**
    * Test copy method.
    */
-  public void copy(){
+  @Test
+  public void copy() {
 
     q1.answer("Strongly Agree");
 

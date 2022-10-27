@@ -153,6 +153,9 @@ public class QuestionnaireImplTest {
     Q3.removeQuestion("jaja");
   }
 
+  /**
+   * Remove question argument exception.
+   */
   @Test(expected = IllegalArgumentException.class)
   public void removeQuestionArgumentException() {
     Q1.removeQuestion("");
@@ -325,6 +328,9 @@ public class QuestionnaireImplTest {
     assertNotEquals(Q1, Q5);
   }
 
+  /**
+   * Test Sort exceptions.
+   */
   @Test(expected = NullPointerException.class)
   public void SortExceptions() {
     Q1.sort(null);

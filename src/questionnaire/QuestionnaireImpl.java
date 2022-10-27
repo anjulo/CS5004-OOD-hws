@@ -182,7 +182,7 @@ public class QuestionnaireImpl implements Questionnaire {
    *
    * @param comp a comparator for Question
    */
-  public void sort(Comparator<Question> comp) throws IllegalArgumentException{
+  public void sort(Comparator<Question> comp) throws IllegalArgumentException {
     if (comp == null) {
       throw new IllegalArgumentException();
     } else {
