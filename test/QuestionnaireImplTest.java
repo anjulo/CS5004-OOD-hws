@@ -307,6 +307,13 @@ public class QuestionnaireImplTest {
     Q5.addQuestion("q2", q2);
     assertEquals(Q5, Q4);
   }
+  /**
+   * Test filter exceptions.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void filerExceptions() {
+    Q1.filter(null);
+  }
 
   /**
    * Test sort.
@@ -336,8 +343,8 @@ public class QuestionnaireImplTest {
   /**
    * Test Sort exceptions.
    */
-  @Test(expected = NullPointerException.class)
-  public void SortExceptions() {
+  @Test(expected = IllegalArgumentException.class)
+  public void sortExceptions() {
     Q1.sort(null);
   }
 
@@ -354,6 +361,27 @@ public class QuestionnaireImplTest {
 
     assertEquals(4, totalNumQ1, 0.01);
     assertEquals(2, totalNumWithResponseQ1, 0.01);
+  }
+
+  /**
+   * Test fold exceptions.
+   */
+  @Test
+  public void foldExceptions() {
+    int counter = 0;
+    int total = 2;
+    try {
+    Q1.fold(null, 0);
+    } catch(IllegalArgumentException e){
+      counter ++;
+    }
+    try {
+      Q1.fold((q, s) -> 1 + s, (Integer) null);
+    } catch(IllegalArgumentException e){
+      counter ++;
+    }
+
+    assertEquals(counter, total);
   }
 
   /**
