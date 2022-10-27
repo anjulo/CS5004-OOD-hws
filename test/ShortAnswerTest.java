@@ -29,6 +29,14 @@ public class ShortAnswerTest {
    * Question 4.
    */
   Question q4;
+  /**
+   * Question 5.
+   */
+  Question q5;
+  /**
+   * Question 6.
+   */
+  Question q6;
 
   /**
    * Sets up objects for test.

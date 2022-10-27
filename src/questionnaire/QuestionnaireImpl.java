@@ -166,12 +166,19 @@ public class QuestionnaireImpl implements Questionnaire {
     } else {
       QuestionnaireImpl filteredQuestionnaire = new QuestionnaireImpl();
       // change implementation
+      /*
       filteredQuestionnaire.map = this.getKeysQuestionsList()
               .stream()
-              .filter(kq -> pq.test(kq.getValue().copy())) //
+              .filter(kq -> pq.test(kq.getValue())) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                       (x, y) -> y, LinkedHashMap::new));
+       */
 
+      for (Map.Entry<String, Question> kq : this.getKeysQuestionsList()) {
+        if (pq.test(kq.getValue())) {
+          filteredQuestionnaire.addQuestion(kq.getKey(), kq.getValue().copy());
+        }
+      }
       return (Questionnaire) filteredQuestionnaire;
     }
   }
