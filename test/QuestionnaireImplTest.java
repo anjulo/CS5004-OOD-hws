@@ -291,13 +291,17 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void filter() {
-    Q4 = Q1.filter(new isRequired());
+    Predicate<Question> isRequired =  q -> q.isRequired();
+    Q4 = Q1.filter(isRequired);
+    //Q4 = Q1.filter(new isRequired());
     Q5 = new QuestionnaireImpl();
     Q5.addQuestion("q1", q1);
     Q5.addQuestion("q3", q3);
     assertEquals(Q5, Q4);
 
-    Q4 = Q1.filter(new longPrompt());
+    Predicate<Question> longPrompt = q -> q.getPrompt().length() > 16;
+    Q4 = Q1.filter(longPrompt); // lambda expression
+    //Q4 = Q1.filter(new longPrompt()); // using predicate class
     Q5 = new QuestionnaireImpl();
     Q5.addQuestion("q1", q1);
     Q5.addQuestion("q2", q2);
@@ -342,6 +346,14 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void fold() {
+
+
+    Integer totalNumQ1 = Q1.fold((q, s) -> 1 + s, 0);
+    //BiFunction<Question, Integer, Integer> adder = (q, s) -> 1+s;
+    Integer totalNumWithResponseQ1 = Q1.fold(new totalNumWithResponse(), 0);
+
+    assertEquals(4, totalNumQ1, 0.01);
+    assertEquals(2, totalNumWithResponseQ1, 0.01);
   }
 
   /**
