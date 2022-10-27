@@ -2,28 +2,44 @@ package questionnaire;
 
 import java.util.Objects;
 
+/**
+ * The type Short answer.
+ */
 public class ShortAnswer extends AbstractQuestion {
 
-  public ShortAnswer(String prompt, Boolean isRequired){
+  /**
+   * Instantiates a new Short answer.
+   *
+   * @param prompt     the prompt
+   * @param isRequired the is required
+   */
+  public ShortAnswer(String prompt, Boolean isRequired) {
     super(prompt, isRequired);
   }
 
   @Override
-  public void answer(String answer) throws IllegalArgumentException{
-    if(answer != null && answer.length() <= 280){
+  public void answer(String answer) throws IllegalArgumentException {
+    final int MaxNumOfChar = 280;
+    if (answer != null && answer.length() <= MaxNumOfChar) {
       super.answer(answer);
     } else {
       throw new IllegalArgumentException();
     }
   }
 
-  public Question copy(){
+  /**
+   * Deep copies the question.
+   *
+   * @return Question
+   */
+  public Question copy() {
     Question newQuestion = new ShortAnswer(this.getPrompt(), this.isRequired());
-    if(this.getAnswer().length() != 0) {
+    if (this.getAnswer().length() != 0) {
       newQuestion.answer(this.getAnswer());
     }
     return newQuestion;
   }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
