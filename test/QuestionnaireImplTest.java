@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
+
 import org.junit.Before;
 import org.junit.Test;
 import questionnaire.Likert;
