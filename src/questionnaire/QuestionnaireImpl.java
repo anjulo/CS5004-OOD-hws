@@ -179,8 +179,9 @@ public class QuestionnaireImpl implements Questionnaire {
     if (comp == null) {
       throw new NullPointerException();
     } else {
+      List<Map.Entry<String, Question>> keysQuestionsList = getKeysQuestionsList();
       this.map.clear();
-      this.map = getKeysQuestionsList()
+      this.map = keysQuestionsList
               .stream()
               .sorted(Map.Entry.comparingByValue(comp)) //
               .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
