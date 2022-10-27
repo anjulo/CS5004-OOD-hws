@@ -49,7 +49,7 @@ public class QuestionnaireImpl implements Questionnaire {
    */
   public void removeQuestion(String identifier) throws NoSuchElementException,
           IllegalArgumentException {
-    if(identifier == null || identifier.length() ==0){
+    if (identifier == null || identifier.length() == 0) {
       throw new IllegalArgumentException();
     }
     if (map.containsKey(identifier)) {

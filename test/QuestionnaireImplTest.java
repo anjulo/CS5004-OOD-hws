@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
-
+import java.util.function.BiFunction;
+import java.util.function.Predicate;
 import org.junit.Before;
 import org.junit.Test;
 import questionnaire.Likert;
@@ -89,7 +90,6 @@ public class QuestionnaireImplTest {
     q3.answer("Agree");
     q4 = new YesNo("yeap?", false);
     q5 = new ShortAnswer("Nope?", true);
-    Q2 = new QuestionnaireImpl();
 
     // questionnaires
     Q1 = new QuestionnaireImpl();
@@ -98,6 +98,7 @@ public class QuestionnaireImplTest {
     Q1.addQuestion("q3", q3);
     Q1.addQuestion("q4", q4);
 
+    Q2 = new QuestionnaireImpl();
     Q2.addQuestion("q2", q1);
     Q2.addQuestion("q4", q2);
     Q2.addQuestion("q5", q5);
@@ -151,6 +152,7 @@ public class QuestionnaireImplTest {
     Q3.removeQuestion("lol");
     Q3.removeQuestion("jaja");
   }
+
   @Test(expected = IllegalArgumentException.class)
   public void removeQuestionArgumentException() {
     Q1.removeQuestion("");
