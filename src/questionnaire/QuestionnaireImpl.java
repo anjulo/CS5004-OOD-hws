@@ -160,9 +160,9 @@ public class QuestionnaireImpl implements Questionnaire {
    * @param pq the predicate
    * @return the new questionnaire
    */
-  public Questionnaire filter(Predicate<Question> pq) throws NullPointerException {
+  public Questionnaire filter(Predicate<Question> pq) throws IllegalArgumentException {
     if (pq == null) {
-      throw new NullPointerException();
+      throw new IllegalArgumentException();
     } else {
       QuestionnaireImpl filteredQuestionnaire = new QuestionnaireImpl();
       // change implementation
@@ -182,9 +182,9 @@ public class QuestionnaireImpl implements Questionnaire {
    *
    * @param comp a comparator for Question
    */
-  public void sort(Comparator<Question> comp) {
+  public void sort(Comparator<Question> comp) throws IllegalArgumentException{
     if (comp == null) {
-      throw new NullPointerException();
+      throw new IllegalArgumentException();
     } else {
       List<Map.Entry<String, Question>> keysQuestionsList = this.getKeysQuestionsList();
       this.map.clear();
