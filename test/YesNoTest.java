@@ -113,6 +113,17 @@ public class YesNoTest {
   @Test
   public void copy(){
 
+    q1.answer("Yes");
+
+    q4 = q1.copy();
+    q5 = q2.copy();
+    q6 = q3.copy();
+
+    q3.answer("yes");
+
+    assertTrue(q4.equals(q1) && q4 != q1);
+    assertTrue(q5.equals(q2) && q5 != q2);
+    assertNotEquals(q6, q3);
   }
 
 }

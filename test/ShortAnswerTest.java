@@ -92,5 +92,16 @@ public class ShortAnswerTest {
   @Test
   public void copy() {
 
+    q1.answer("Yeaah");
+
+    q4 = q1.copy();
+    q5 = q2.copy();
+    q6 = q3.copy();
+
+    q3.answer("yeaap");
+
+    assertTrue(q4.equals(q1) && q4 != q1);
+    assertTrue(q5.equals(q2) && q5 != q2);
+    assertNotEquals(q6, q3);
   }
 }

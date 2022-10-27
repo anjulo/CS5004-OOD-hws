@@ -122,5 +122,16 @@ public class LikertTest {
    */
   public void copy(){
 
+    q1.answer("Strongly Agree");
+
+    q4 = q1.copy();
+    q5 = q2.copy();
+    q6 = q3.copy();
+
+    q3.answer("Neither agree nor disagree");
+
+    assertTrue(q4.equals(q1) && q4 != q1);
+    assertTrue(q5.equals(q2) && q5 != q2);
+    assertNotEquals(q6, q3);
   }
 }
