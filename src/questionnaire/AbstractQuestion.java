@@ -17,7 +17,10 @@ public abstract class AbstractQuestion implements Question {
    * @param prompt     the prompt
    * @param isRequired  required or not
    */
-  public AbstractQuestion(String prompt, Boolean isRequired) {
+  public AbstractQuestion(String prompt, Boolean isRequired) throws IllegalArgumentException {
+    if( prompt == null || prompt.length() == 0) {
+      throw new IllegalArgumentException();
+    }
     this.prompt = prompt;
     this.isRequired = isRequired;
     this.answer = "";
