@@ -286,6 +286,17 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void filter() {
+    Q4 = Q1.filter(new isRequired());
+    Q5 = new QuestionnaireImpl();
+    Q5.addQuestion("q1", q1);
+    Q5.addQuestion("q3", q3);
+    assertEquals(Q5, Q4);
+
+    Q4 = Q1.filter(new longPrompt());
+    Q5 = new QuestionnaireImpl();
+    Q5.addQuestion("q1", q1);
+    Q5.addQuestion("q2", q2);
+    assertEquals(Q5, Q4);
   }
 
   /**
