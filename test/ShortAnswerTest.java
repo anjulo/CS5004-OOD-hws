@@ -76,7 +76,7 @@ public class ShortAnswerTest {
   /**
    * Test exceptions from answer method.
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void answerExceptions() {
     String answer3 = "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
             + "doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore "
@@ -90,9 +90,25 @@ public class ShortAnswerTest {
             + "consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque "
             + "porro quisquam est, qui";
 
-    q1.answer(null);
-    q3.answer(answer3);
-    q4.answer(answer4);
+    int counter = 0;
+    int total = 3;
+    try {
+      q1.answer(null);
+    } catch(IllegalArgumentException e) {
+      counter++;
+    }
+    try {
+      q3.answer(answer3);
+    } catch(IllegalArgumentException e){
+      counter++;
+    }
+    try {
+      q4.answer(answer4);
+    } catch(IllegalArgumentException e){
+      counter++;
+    }
+
+    assertEquals(total, counter);
 
   }
 

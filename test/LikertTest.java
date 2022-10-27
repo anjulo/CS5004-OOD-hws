@@ -107,16 +107,46 @@ public class LikertTest {
   /**
    * Test exceptions from answer method.
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void answerException() {
-    q1.answer("Strongly Agree.");
-    q2.answer("Agreee");
-    q3.answer("Neither Agree no Disagree");
-    q4.answer("Disagre");
-    q5.answer("Strongly Disagree!");
-
-    q6.answer("");
-    q7.answer("Not the correct response.");
+    int x = 0;
+    int total = 7;
+    try {
+      q1.answer("Strongly Agree.");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q2.answer("Agreee");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q3.answer("Neither Agree no Disagree");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q4.answer("Disagre");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q5.answer("Strongly Disagree!");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q6.answer("");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q7.answer("Not the correct response.");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    assertEquals(total, x);
   }
 
   /**

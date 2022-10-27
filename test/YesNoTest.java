@@ -77,16 +77,41 @@ public class YesNoTest {
   /**
    * Test answer() exceptions.
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void answerExceptions() {
-
-    q1.answer("");
-    q2.answer(" ");
-    q3.answer("yess");
-    q4.answer("noo");
-    q5.answer("yeah");
-    q6.answer("nah");
-
+    int x = 0;
+    int total = 6;
+    try {
+      q1.answer("");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q2.answer(" ");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q2.answer("yess");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q2.answer("noo");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q2.answer("yeah");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    try {
+      q2.answer("nah");
+    } catch(IllegalArgumentException e){
+      x++;
+    }
+    assertEquals(total, x);
   }
 
   /**
