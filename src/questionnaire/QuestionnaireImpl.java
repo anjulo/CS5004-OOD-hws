@@ -247,13 +247,15 @@ public class QuestionnaireImpl implements Questionnaire {
     return outString.toString();
   }
 
-  private List<Question> getQuestionsList(){
+  private List<Question> getQuestionsList() {
     return new ArrayList<>(this.map.values());
   }
-  private List<String> getKeysList(){
+
+  private List<String> getKeysList() {
     return new ArrayList<>(this.map.keySet());
   }
-  private List<Map.Entry<String, Question>> getKeysQuestionsList(){
+
+  private List<Map.Entry<String, Question>> getKeysQuestionsList() {
     return  new ArrayList<>(this.map.entrySet());
   }
 

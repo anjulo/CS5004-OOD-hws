@@ -107,6 +107,9 @@ public class YesNoTest {
     assertEquals(q6.getAnswer(), "NO");
   }
 
+  /**
+   * Test copy.
+   */
   @Test
   public void copy(){
 
