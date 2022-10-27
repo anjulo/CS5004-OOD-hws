@@ -1,11 +1,10 @@
 import java.util.Comparator;
-
 import questionnaire.Question;
 
 /**
  * Comparator class for questionnaire.
  */
-public class idComparator implements Comparator<Question> {
+public class promptComparator implements Comparator<Question> {
   /**
    * Returns integer value as a result of comparison.
    * @param q1 the first object to be compared.

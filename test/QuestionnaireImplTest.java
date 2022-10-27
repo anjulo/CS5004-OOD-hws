@@ -293,9 +293,8 @@ public class QuestionnaireImplTest {
    */
   @Test
   public void sort() {
-    Comparator<Question> idComparator = new idComparator();
 
-    Q1.sort(idComparator);
+    Q1.sort(new promptComparator());
 
     Q4 = new QuestionnaireImpl();
     Q4.addQuestion("q4", q4);
