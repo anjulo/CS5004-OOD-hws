@@ -110,43 +110,42 @@ public class LikertTest {
   @Test
   public void answerException() {
     int x = 0;
-    int total = 7;
     try {
       q1.answer("Strongly Agree.");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q2.answer("Agreee");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q3.answer("Neither Agree no Disagree");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q4.answer("Disagre");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q5.answer("Strongly Disagree!");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q6.answer("");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q7.answer("Not the correct response.");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
-    assertEquals(total, x);
+    assertEquals(7, x);
   }
 
   /**

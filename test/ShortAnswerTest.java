@@ -91,24 +91,23 @@ public class ShortAnswerTest {
             + "porro quisquam est, qui";
 
     int counter = 0;
-    int total = 3;
     try {
       q1.answer(null);
-    } catch(IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       counter++;
     }
     try {
       q3.answer(answer3);
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       counter++;
     }
     try {
       q4.answer(answer4);
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       counter++;
     }
 
-    assertEquals(total, counter);
+    assertEquals(3, counter);
 
   }
 

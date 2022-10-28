@@ -80,38 +80,37 @@ public class YesNoTest {
   @Test
   public void answerExceptions() {
     int x = 0;
-    int total = 6;
     try {
       q1.answer("");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q2.answer(" ");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q2.answer("yess");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q2.answer("noo");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q2.answer("yeah");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
     try {
       q2.answer("nah");
-    } catch(IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       x++;
     }
-    assertEquals(total, x);
+    assertEquals(6, x);
   }
 
   /**
