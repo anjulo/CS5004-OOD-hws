@@ -369,19 +369,18 @@ public class QuestionnaireImplTest {
   @Test
   public void foldExceptions() {
     int counter = 0;
-    int total = 2;
     try {
-    Q1.fold(null, 0);
-    } catch(IllegalArgumentException e){
-      counter ++;
+      Q1.fold(null, 0);
+    } catch (IllegalArgumentException e) {
+      counter++;
     }
     try {
       Q1.fold((q, s) -> 1 + s, (Integer) null);
-    } catch(IllegalArgumentException e){
-      counter ++;
+    } catch (IllegalArgumentException e) {
+      counter++;
     }
 
-    assertEquals(counter, total);
+    assertEquals(2, counter);
   }
 
   /**
