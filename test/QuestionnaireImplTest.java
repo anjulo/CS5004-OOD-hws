@@ -310,6 +310,7 @@ public class QuestionnaireImplTest {
   /**
    * Test filter exceptions.
    */
+
   @Test(expected = IllegalArgumentException.class)
   public void filerExceptions() {
     Q1.filter(null);
