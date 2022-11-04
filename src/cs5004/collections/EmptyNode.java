@@ -2,11 +2,14 @@ package cs5004.collections;
 
 import java.util.Objects;
 
-public class EmptyNode implements PriorityQueue{
+/**
+ * The Empty node concrete class.
+ */
+public class EmptyNode implements PriorityQueue {
 
 
   /**
-   * Checks if the priority queue is empty
+   * Checks if the priority queue is empty.
    *
    * @return true if the PQ is empty, false otherwise.
    */
@@ -24,14 +27,15 @@ public class EmptyNode implements PriorityQueue{
    */
   @Override
   public PriorityQueue add(Integer priority, String value) throws IllegalArgumentException {
-    if (priority < 1 || priority > 10){
+    if (priority < 1 || priority > 10) {
       throw new IllegalArgumentException();
     }
-    return new ListPriorityQueue(priority, value, this) ;
+    return new ListPriorityQueue(priority, value, this);
   }
 
   /**
-   * Gets the value of the highest priority element. If there are multiple elements that have the same priority, gets
+   * Gets the value of the highest priority element. If there are multiple elements
+   * that have the same priority, gets
    * the value  of the most recently added element.
    *
    * @return The value  of the highest priority element.
@@ -54,7 +58,7 @@ public class EmptyNode implements PriorityQueue{
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return "!!!";
   }
 

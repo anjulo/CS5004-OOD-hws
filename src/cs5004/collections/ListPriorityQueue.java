@@ -2,6 +2,9 @@ package cs5004.collections;
 
 import java.util.Objects;
 
+/**
+ * The List priority queue concrete class.
+ */
 public class ListPriorityQueue implements PriorityQueue {
 
   private Integer priority;
@@ -9,20 +12,30 @@ public class ListPriorityQueue implements PriorityQueue {
   private PriorityQueue rest;
 
 
-  public ListPriorityQueue(Integer priority, String value, PriorityQueue rest){
+  /**
+   * Instantiates a new priority queue.
+   *
+   * @param priority the priority
+   * @param value    the value
+   * @param rest     the rest of the priority queue
+   */
+  public ListPriorityQueue(Integer priority, String value, PriorityQueue rest) {
     this.priority = priority;
     this.value = value;
     this.rest = rest;
   }
+
   /**
+   * Creates an empty priority queue.
    *
+   * @return the empty priority queue
    */
   public static PriorityQueue createEmpty() {
     return new EmptyNode();
   }
 
   /**
-   * Checks if the priority queue is empty
+   * Checks if the priority queue is empty.
    *
    * @return true if the PQ is empty, false otherwise.
    */
@@ -40,17 +53,18 @@ public class ListPriorityQueue implements PriorityQueue {
    */
   @Override
   public PriorityQueue add(Integer priority, String value) throws IllegalArgumentException {
-    if (priority < 1 || priority > 10){
+    if (priority < 1 || priority > 10) {
       throw new IllegalArgumentException("Input priority out of allowed ranges");
     }
-    if(priority > this.priority){
+    if (priority > this.priority) {
       return new ListPriorityQueue(priority, value, this);
     }
     return new ListPriorityQueue(this.priority, this.value, this.rest.add(priority, value));
   }
 
   /**
-   * Gets the value of the highest priority element. If there are multiple elements that have the same priority, gets
+   * Gets the value of the highest priority element. If there are multiple elements
+   * that have the same priority, gets
    * the value  of the most recently added element.
    *
    * @return The value  of the highest priority element.
@@ -58,7 +72,7 @@ public class ListPriorityQueue implements PriorityQueue {
    */
   @Override
   public String peek() throws EmptyPriorityQueueException {
-    if(this.isEmpty()){
+    if (this.isEmpty()) {
       throw new EmptyPriorityQueueException();
     }
     return this.value;
@@ -72,14 +86,14 @@ public class ListPriorityQueue implements PriorityQueue {
    */
   @Override
   public PriorityQueue pop() throws EmptyPriorityQueueException {
-    if(this.isEmpty()){
+    if (this.isEmpty()) {
       throw new EmptyPriorityQueueException();
     }
     return this.rest;
   }
 
   @Override
-  public String toString(){
+  public String toString() {
     return this.priority + " " + this.value + "\n" + this.rest.toString();
   }
 
