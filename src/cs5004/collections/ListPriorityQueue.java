@@ -41,7 +41,7 @@ public class ListPriorityQueue implements PriorityQueue {
    */
   @Override
   public Boolean isEmpty() {
-    return this.rest == null;
+    return false;
   }
 
   /**
@@ -68,13 +68,9 @@ public class ListPriorityQueue implements PriorityQueue {
    * the value  of the most recently added element.
    *
    * @return The value  of the highest priority element.
-   * @throws EmptyPriorityQueueException if the PQ is empty.
    */
   @Override
-  public String peek() throws EmptyPriorityQueueException {
-    if (this.isEmpty()) {
-      throw new EmptyPriorityQueueException();
-    }
+  public String peek() {
     return this.value;
   }
 
@@ -82,19 +78,10 @@ public class ListPriorityQueue implements PriorityQueue {
    * Removes the highest priority element.
    *
    * @return A copy of the priority queue without the highest priority element.
-   * @throws EmptyPriorityQueueException if the PQ is empty.
    */
   @Override
-  public PriorityQueue pop() throws EmptyPriorityQueueException {
-    if (this.isEmpty()) {
-      throw new EmptyPriorityQueueException();
-    }
+  public PriorityQueue pop() {
     return this.rest;
-  }
-
-  @Override
-  public String toString() {
-    return this.priority + " " + this.value + "\n" + this.rest.toString();
   }
 
   @Override
