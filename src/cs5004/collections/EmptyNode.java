@@ -58,6 +58,10 @@ public class EmptyNode implements PriorityQueue {
   }
 
   @Override
+  public String toString() {
+    return "";
+  }
+  @Override
   public boolean equals(Object o) {
     return o instanceof EmptyNode;
   }

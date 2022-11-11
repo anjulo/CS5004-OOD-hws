@@ -99,6 +99,14 @@ public class ListPriorityQueue implements PriorityQueue {
   }
 
   @Override
+  public String toString() {
+    return "{" +
+            "priority=" + priority.toString() +
+            ", value='" + value + "'," +
+            rest.toString() +
+            "}";
+  }
+  @Override
   public int hashCode() {
     return Objects.hash(priority, value, rest);
   }
