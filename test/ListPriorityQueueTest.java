@@ -63,6 +63,12 @@ public class ListPriorityQueueTest {
     PriorityQueue q4521 = new ListPriorityQueue(10, "ten",
             new ListPriorityQueue(5, "five", q2));
     assertEquals(q4521, q5);
+
+    PriorityQueue q5_1 = q5.add(5, "five2");
+    PriorityQueue q5_1expected = new ListPriorityQueue(10, "ten",
+            new ListPriorityQueue(5, "five",
+            new ListPriorityQueue(5, "five2", q2)));
+    assertEquals(q5_1expected, q5_1);
   }
 
   /**
