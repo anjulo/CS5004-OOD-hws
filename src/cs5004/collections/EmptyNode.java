@@ -8,6 +8,14 @@ import java.util.Objects;
 public class EmptyNode implements PriorityQueue {
 
 
+  private EmptyNode(){
+
+  }
+
+  private static final EmptyNode INSTANCE =  new EmptyNode();
+  public static EmptyNode getInstance(){
+    return INSTANCE;
+  }
   /**
    * Checks if the priority queue is empty.
    *

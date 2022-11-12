@@ -31,7 +31,7 @@ public class ListPriorityQueue implements PriorityQueue {
    * @return the empty priority queue
    */
   public static PriorityQueue createEmpty() {
-    return new EmptyNode();
+    return EmptyNode.getInstance();
   }
 
   /**
