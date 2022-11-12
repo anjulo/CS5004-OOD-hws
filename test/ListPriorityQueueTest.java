@@ -26,7 +26,7 @@ public class ListPriorityQueueTest {
 
   @Before
   public void setUp() {
-    q0 = new EmptyNode();
+    q0 = ListPriorityQueue.createEmpty();
     q1 = new ListPriorityQueue(1, "one", q0);
     q2 = new ListPriorityQueue(2, "two", q1);
   }
@@ -35,16 +35,16 @@ public class ListPriorityQueueTest {
    * Tests createEmpty().
    */
   @Test
-  public void createEmpty() {
+  public void createEmptyTest() {
     q3 = ListPriorityQueue.createEmpty();
-    assertEquals(q0, q2);
+    assertEquals(q0, q3);
   }
 
   /**
    * Tests isEmpty().
    */
   @Test
-  public void isEmpty() {
+  public void isEmptyTest() {
     assertFalse(q1.isEmpty());
     assertFalse(q2.isEmpty());
   }
@@ -53,7 +53,7 @@ public class ListPriorityQueueTest {
    * Tests add().
    */
   @Test
-  public void add() {
+  public void addTest() {
     q3 = q1.add(3, "three");
     assertEquals(new ListPriorityQueue(3, "three", q1), q3);
     q4 = q2.add(10, "ten");
@@ -64,7 +64,7 @@ public class ListPriorityQueueTest {
    * Test exceptions in add().
    */
   @Test
-  public void addExceptions() {
+  public void addExceptionsTest() {
     int exceptionsCount = 0;
     try {
       q3 = q1.add(0, "zero");
@@ -83,7 +83,7 @@ public class ListPriorityQueueTest {
    * Tests peek().
    */
   @Test
-  public void peek() throws EmptyPriorityQueueException {
+  public void peekTest() throws EmptyPriorityQueueException {
     assertEquals("one", q1.peek());
     assertEquals("two", q2.peek());
   }
@@ -92,7 +92,7 @@ public class ListPriorityQueueTest {
    * Tests pop().
    */
   @Test
-  public void pop() throws EmptyPriorityQueueException {
+  public void popTest() throws EmptyPriorityQueueException {
 
     q3 = q2.add(3, "three");
 
@@ -105,13 +105,13 @@ public class ListPriorityQueueTest {
    * Tests equals().
    */
   @Test
-  public void testEquals() {
+  public void equalsTest() {
   }
 
   /**
    * Tests hashCode().
    */
   @Test
-  public void testHashCode() {
+  public void HashCodeTest() {
   }
 }

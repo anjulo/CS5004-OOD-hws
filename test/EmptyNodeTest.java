@@ -36,7 +36,7 @@ public class EmptyNodeTest {
    * Tests isEmpty().
    */
   @Test
-  public void isEmpty() {
+  public void isEmptyTest() {
     assertTrue(q0.isEmpty());
   }
 
@@ -44,7 +44,7 @@ public class EmptyNodeTest {
    * Tests add().
    */
   @Test
-  public void add() {
+  public void addTest() {
     q1 = q0.add(1, "one");
     assertEquals(q1, new ListPriorityQueue(1, "one", q0));
     q2 = q0.add(10, "ten");
@@ -58,7 +58,7 @@ public class EmptyNodeTest {
    * Test exceptions in add().
    */
   @Test
-  public void addExceptions() {
+  public void addExceptionsTest() {
     int exceptionsCount = 0;
     try {
       q1 = q0.add(0, "zero");
@@ -77,7 +77,7 @@ public class EmptyNodeTest {
    * Tests peek().
    */
   @Test
-  public void peek() throws EmptyPriorityQueueException {
+  public void peekTest() throws EmptyPriorityQueueException {
     int exceptionsCount = 0;
     try {
       q0.peek();
@@ -96,7 +96,7 @@ public class EmptyNodeTest {
    * Tests pop().
    */
   @Test
-  public void pop() throws EmptyPriorityQueueException {
+  public void popTest() throws EmptyPriorityQueueException {
     int exceptionsCount = 0;
     try {
       q0.pop();
@@ -115,13 +115,13 @@ public class EmptyNodeTest {
    * Tests equals().
    */
   @Test
-  public void testEquals() {
+  public void EqualsTest() {
   }
 
   /**
    * Tests hashCode().
    */
   @Test
-  public void testHashCode() {
+  public void HashCodeTest() {
   }
 }
