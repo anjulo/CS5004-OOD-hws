@@ -8,12 +8,13 @@ import java.util.Objects;
 public class EmptyNode implements PriorityQueue {
 
 
-  private EmptyNode(){
+  private EmptyNode() {
 
   }
 
   private static final EmptyNode INSTANCE =  new EmptyNode();
-  public static EmptyNode getInstance(){
+
+  public static EmptyNode getInstance() {
     return INSTANCE;
   }
   /**
@@ -21,6 +22,7 @@ public class EmptyNode implements PriorityQueue {
    *
    * @return true if the PQ is empty, false otherwise.
    */
+
   @Override
   public Boolean isEmpty() {
     return true;
@@ -69,6 +71,7 @@ public class EmptyNode implements PriorityQueue {
   public String toString() {
     return "";
   }
+
   @Override
   public boolean equals(Object o) {
     return o instanceof EmptyNode;
