@@ -85,6 +85,10 @@ public class ListPriorityQueue implements PriorityQueue {
   }
 
   @Override
+  public String toString() {
+    return  priority.toString() + "," + value + " --> " + rest.toString();
+  }
+  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;
