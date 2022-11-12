@@ -92,6 +92,7 @@ public class ListPriorityQueue implements PriorityQueue {
   public String toString() {
     return  priority.toString() + "," + value + " --> " + rest.toString();
   }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {

@@ -1,16 +1,13 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
 
-import cs5004.collections.EmptyNode;
 import cs5004.collections.EmptyPriorityQueueException;
 import cs5004.collections.ListPriorityQueue;
 import cs5004.collections.PriorityQueue;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
 
 /**
  * Test for priority queue class.
@@ -120,12 +117,13 @@ public class ListPriorityQueueTest {
   /**
    * Tests equals().
    */
+
   @Test
   public void equalsTest() {
     assertEquals(q1, q1);
-    PriorityQueue q10 = new ListPriorityQueue(1,"one", q0);
+    PriorityQueue q10 = new ListPriorityQueue(1, "one", q0);
     assertEquals(q1, q10);
-    PriorityQueue q20 = new ListPriorityQueue(2,"two", q1);
+    PriorityQueue q20 = new ListPriorityQueue(2, "two", q1);
     assertEquals(q2, q20);
     assertNotEquals(q0, q1);
   }
