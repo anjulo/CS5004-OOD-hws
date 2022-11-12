@@ -1,5 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 import cs5004.collections.EmptyNode;
 import cs5004.collections.EmptyPriorityQueueException;
@@ -7,6 +9,8 @@ import cs5004.collections.ListPriorityQueue;
 import cs5004.collections.PriorityQueue;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * Test for priority queue class.
@@ -58,6 +62,10 @@ public class ListPriorityQueueTest {
     assertEquals(new ListPriorityQueue(3, "three", q1), q3);
     q4 = q2.add(10, "ten");
     assertEquals(new ListPriorityQueue(10, "ten", q2), q4);
+    PriorityQueue q5 = q4.add(5, "five");
+    PriorityQueue q4521 = new ListPriorityQueue(10, "ten",
+            new ListPriorityQueue(5, "five", q2));
+    assertEquals(q4521, q5);
   }
 
   /**
@@ -101,7 +109,6 @@ public class ListPriorityQueueTest {
     assertEquals(q0, q1.pop());
   }
 
-
   /**
    * Tests toString().
    */
@@ -115,12 +122,11 @@ public class ListPriorityQueueTest {
    */
   @Test
   public void equalsTest() {
-  }
-
-  /**
-   * Tests hashCode().
-   */
-  @Test
-  public void HashCodeTest() {
+    assertEquals(q1, q1);
+    PriorityQueue q10 = new ListPriorityQueue(1,"one", q0);
+    assertEquals(q1, q10);
+    PriorityQueue q20 = new ListPriorityQueue(2,"two", q1);
+    assertEquals(q2, q20);
+    assertNotEquals(q0, q1);
   }
 }

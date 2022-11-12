@@ -11,6 +11,9 @@ public class ListPriorityQueue implements PriorityQueue {
   private String value;
   private PriorityQueue rest;
 
+  private static final int LOWEST_PRIORITY = 1;
+  private static final int HIGHEST_PRIORITY = 10;
+
 
   /**
    * Instantiates a new priority queue.
@@ -53,7 +56,8 @@ public class ListPriorityQueue implements PriorityQueue {
    */
   @Override
   public PriorityQueue add(Integer priority, String value) throws IllegalArgumentException {
-    if (priority < 1 || priority > 10) {
+
+    if (priority < LOWEST_PRIORITY || priority > HIGHEST_PRIORITY) {
       throw new IllegalArgumentException("Input priority out of allowed ranges");
     }
     if (priority > this.priority) {
@@ -100,15 +104,6 @@ public class ListPriorityQueue implements PriorityQueue {
     return this.priority.equals(that.priority)
             && this.value.equals(that.value)
             && this.rest.equals(that.rest);
-  }
-
-  @Override
-  public String toString() {
-    return "{"
-            + "priority=" + priority.toString()
-            + ", value='" + value + "',"
-            + rest.toString()
-            + "}";
   }
 
   @Override

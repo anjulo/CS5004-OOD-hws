@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
 import cs5004.collections.EmptyPriorityQueueException;
@@ -112,16 +113,21 @@ public class EmptyNodeTest {
   }
 
   /**
-   * Tests equals().
+   * Tests toString().
    */
   @Test
-  public void EqualsTest() {
+  public void toStringTest() {
+    assertEquals("", q0.toString());
+    assertEquals("", q01.toString());
   }
 
   /**
-   * Tests hashCode().
+   * Tests equals().
    */
   @Test
-  public void HashCodeTest() {
+  public void equalsTest() {
+    assertEquals(q0, q01);
+    assertSame(q0, q01); // singlton class
   }
+
 }
