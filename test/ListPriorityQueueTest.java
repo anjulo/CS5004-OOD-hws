@@ -101,6 +101,15 @@ public class ListPriorityQueueTest {
     assertEquals(q0, q1.pop());
   }
 
+
+  /**
+   * Tests toString().
+   */
+  @Test
+  public void toStringTest() {
+    assertEquals("1,one --> ", q1.toString());
+    assertEquals("2,two --> 1,one --> ", q2.toString());
+  }
   /**
    * Tests equals().
    */
