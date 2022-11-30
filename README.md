@@ -1,6 +1,6 @@
 #  CS 5004 : Object-Oriented Design 
 
-This is a repo set up for submission of *CS 5004 : Object-Oriented Design Homeworks* via *Gradescope*. Each homework assignment is push as its own branch. Each branch contains Java source sourse and test codes separeted into packages accordingly. 
+This is a repo set up for submission of *CS 5004 : Object-Oriented Design Homeworks* via *Gradescope*. Each homework assignment is push as its own branch. Each branch contains Java source sourse and test codes separeted into packages accordingly. Each branch contains UML of design and it's own README.md.
 
 ## Branchs
 
@@ -14,4 +14,4 @@ This is a repo set up for submission of *CS 5004 : Object-Oriented Design Homewo
 
 ## Help
 
-Any advise for common problems or issues.
+
